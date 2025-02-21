@@ -1,0 +1,24 @@
+mat-drawer{
+    text-align: center;
+    box-shadow: 1px 2px 5px gray;
+    border-radius: 0;
+    background-color: #EBEBEB;
+}
+
+mat-drawer-container{
+    height: 85%;
+}
+
+mat-icon:active{
+    font-size: 200%;
+}
+
+mat-icon{
+    background-color: #C5D8FB;
+    border-radius: 5px;
+    font-size: 250%;
+    width: 100%;
+    height: 100%;
+    transition: 0.20s;
+}
+

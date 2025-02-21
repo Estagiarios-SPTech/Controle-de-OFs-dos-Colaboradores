@@ -1,0 +1,19 @@
+<div style="display: flex; align-items: center; justify-content: space-around; height: 15%;">
+  <div class="example-sidenav-content" mat-button (click)="drawer.toggle()">
+    <mat-icon>menu</mat-icon>  
+  </div>
+  cabecalho
+</div>
+
+<mat-drawer-container class="example-container">
+    <mat-drawer #drawer class="example-sidenav" mode="side" >
+      <p>Home</p>
+      <p>Seu perfil</p>
+      <p>Ordens de Fornecimento</p>
+      <p>Relatórios</p>
+      <p>Gerenciar usuários</p>
+    </mat-drawer>
+    <mat-drawer-content>
+      ConteudoConteudoConteudoConteudo
+    </mat-drawer-content>
+  </mat-drawer-container>
