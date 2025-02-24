@@ -1,0 +1,77 @@
+<!-- Criação de Ordem de Fornecimento -->
+<div id="pagina">
+    <form>
+        <div class="formParte1">
+            <div>
+                <label for="codigo">ID</label>
+                <input id="codigo" type="number">
+            </div>
+            <div>
+                <label for="status">Status</label>
+                <select id="status">
+                    <option value="Pendente de Cadastramento">Pendente de Cadastramento</option>
+                    <option value="Iniciada">Iniciada</option>
+                    <option value="Validada">Validada</option>
+                </select>
+            </div>
+            <button id="botaoCriar">Criar</button>
+        </div>
+        <div class="formParte2">
+            <div>
+                <label for="colaborador">Colaborador</label>
+                <input id="colaborador" type="text">
+            </div>
+            <div style="display: flex; align-items: start;">
+                <label for="descricao">Descrição</label>
+                <textarea id="descricao" rows="5" cols="30"></textarea>
+            </div>
+        </div>
+    </form>
+
+<!-- Consulta, alteração e exclusão da Ordem de Fornecimento -->
+    <form>
+        <div class="formParte1">
+            <div>
+                <label for="codigo2">ID</label>
+                <input id="codigo2" type="number">
+            </div>
+            <div>
+                <label for="status2">Status</label>
+                <select id="status2">
+                    <option value="Pendente de Cadastramento">Pendente de Cadastramento</option>
+                    <option value="Iniciada">Iniciada</option>
+                    <option value="Validada">Validada</option>
+                </select>
+            </div>
+            <a><img src="botaoPesquisa.png" alt=""></a>
+        </div>
+        <div class="formParte2">
+            <div>
+                <label for="colaborador2">Colaborador</label>
+                <input id="colaborador2" type="text">
+            </div>
+            <div>
+                <label for="criacao">Criação</label>
+                <input id="criacao" type="date">
+            </div>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Colaborador</th>
+                    <th>Descrição</th>
+                    <th>Status</th>
+                    <th>Criação</th>
+                    <th>Atualização</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+</div>
