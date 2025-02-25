@@ -4,26 +4,26 @@
         <div class="formParte1">
             <div>
                 <label for="codigo">ID</label>
-                <input id="codigo" type="number">
+                <input [(ngModel)]="id" name="codigo" id="codigo" type="number">
             </div>
             <div>
                 <label for="status">Status</label>
-                <select id="status">
+                <select [(ngModel)]="status" name="status" id="status">
                     <option value="Pendente de Cadastramento">Pendente de Cadastramento</option>
                     <option value="Iniciada">Iniciada</option>
                     <option value="Validada">Validada</option>
                 </select>
             </div>
-            <button id="botaoCriar">Criar</button>
+            <button (click)="adicionarOf()" class="botaoAzul">Criar</button>
         </div>
         <div class="formParte2">
             <div>
                 <label for="colaborador">Colaborador</label>
-                <input id="colaborador" type="text">
+                <input name="colaborador" [(ngModel)]="colaborador" id="colaborador" type="text">
             </div>
             <div style="display: flex; align-items: start;">
                 <label for="descricao">Descrição</label>
-                <textarea id="descricao" rows="5" cols="30"></textarea>
+                <textarea name="descricao" [(ngModel)]="descricao" id="descricao" rows="5" cols="30"></textarea>
             </div>
         </div>
     </form>
@@ -68,10 +68,23 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td></td>
+                <tr *ngFor="let ordemFornecimento of ordemFornecimentos;">
+                    <td>{{ordemFornecimento.id}}</td>
+                    <td>{{ordemFornecimento.colaborador}}</td>
+                    <td>{{ordemFornecimento.descricao}}</td>
+                    <td>{{ordemFornecimento.status}}</td>
+                    <td>{{ordemFornecimento.criacao}}</td>
+                    <td>{{ordemFornecimento.atualizacao}}</td>
+                    <td>
+                        <img src="botaoEditar.png" alt="">
+                        <img src="botaoDeletar.png" alt="">
+                    </td>
                 </tr>
             </tbody>
         </table>
+        <div id="anteriorProximo">
+            <button class="botaoAzul">Anterior</button>
+            <button class="botaoAzul">Próximo</button>
+        </div>
     </form>
 </div>
