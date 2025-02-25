@@ -1,11 +1,10 @@
 .example-container {
 display: flex;
 flex-direction: column;
-position: absolute;
-top: 0;
-bottom: 0;
+position: relative;
 left: 0;
 right: 0;
+top: 0;
 }
 
 .example-is-mobile .example-toolbar {
@@ -50,3 +49,5 @@ img{
     width: 40px;
     height: 40px;
 } 
+
+
