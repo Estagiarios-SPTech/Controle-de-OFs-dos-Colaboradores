@@ -1,7 +1,5 @@
 <div class="example-container" [class.example-is-mobile]="isMobile()">
-  <app-header></app-header>
-    <button id="botaoMenu" mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
-
+  <app-header (toggleSidebar)="snav.toggle()"></app-header>
 
   <mat-sidenav-container class="example-sidenav-container"
                         [style.marginTop.px]="isMobile() ? 56 : 0">
