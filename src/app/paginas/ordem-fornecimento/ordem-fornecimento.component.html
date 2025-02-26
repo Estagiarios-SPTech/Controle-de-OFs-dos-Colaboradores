@@ -4,7 +4,7 @@
         <div class="formParte1">
             <div>
                 <label for="codigo">ID</label>
-                <input [(ngModel)]="id" name="codigo" id="codigo" type="number">
+                <input readonly [(ngModel)]="id" name="codigo" id="codigo" type="number">
             </div>
             <div>
                 <label for="status">Status</label>
@@ -33,26 +33,25 @@
         <div class="formParte1">
             <div>
                 <label for="codigo2">ID</label>
-                <input id="codigo2" type="number">
+                <input [(ngModel)]="idProcurado" name="codigo2" id="codigo2" type="number">
             </div>
             <div>
                 <label for="status2">Status</label>
-                <select id="status2">
+                <select [ngModel]="statusProcurado" name="status2" id="status2">
                     <option value="Pendente de Cadastramento">Pendente de Cadastramento</option>
                     <option value="Iniciada">Iniciada</option>
                     <option value="Validada">Validada</option>
                 </select>
             </div>
-            <a><img src="botaoPesquisa.png" alt=""></a>
         </div>
         <div class="formParte2">
             <div>
                 <label for="colaborador2">Colaborador</label>
-                <input id="colaborador2" type="text">
+                <input [ngModel]="colaboradorProcurado" name="colaborador2" id="colaborador2" type="text">
             </div>
             <div>
                 <label for="criacao">Criação</label>
-                <input id="criacao" type="date">
+                <input [ngModel]="criacaoProcurado" name="criacao" id="criacao" type="date">
             </div>
         </div>
         <table>
@@ -68,18 +67,32 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let ordemFornecimento of ordemFornecimentos;">
-                    <td>{{ordemFornecimento.id}}</td>
-                    <td>{{ordemFornecimento.colaborador}}</td>
-                    <td>{{ordemFornecimento.descricao}}</td>
-                    <td>{{ordemFornecimento.status}}</td>
-                    <td>{{ordemFornecimento.criacao}}</td>
-                    <td>{{ordemFornecimento.atualizacao}}</td>
+                <tr *ngIf="idProcurado != 0 && idProcurado != null">
+                    <td>{{ordemFornecimentos[idProcurado - 1].id}}</td>
+                    <td>{{ordemFornecimentos[idProcurado - 1].colaborador}}</td>
+                    <td>{{ordemFornecimentos[idProcurado - 1].descricao}}</td>
+                    <td>{{ordemFornecimentos[idProcurado - 1].status}}</td>
+                    <td>{{ordemFornecimentos[idProcurado - 1].criacao}}</td>
+                    <td>{{ordemFornecimentos[idProcurado - 1].atualizacao}}</td>
                     <td>
                         <img src="botaoEditar.png" alt="">
                         <img src="botaoDeletar.png" alt="">
                     </td>
                 </tr>
+                <ng-container *ngIf="idProcurado == 0 || idProcurado == null">
+                    <tr *ngFor="let ordemFornecimento of ordemFornecimentos;">
+                        <td>{{ordemFornecimento.id}}</td>
+                        <td>{{ordemFornecimento.colaborador}}</td>
+                        <td>{{ordemFornecimento.descricao}}</td>
+                        <td>{{ordemFornecimento.status}}</td>
+                        <td>{{ordemFornecimento.criacao}}</td>
+                        <td>{{ordemFornecimento.atualizacao}}</td>
+                        <td>
+                            <img src="botaoEditar.png" alt="">
+                            <img src="botaoDeletar.png" alt="">
+                        </td>
+                    </tr>
+                </ng-container>
             </tbody>
         </table>
         <div id="anteriorProximo">

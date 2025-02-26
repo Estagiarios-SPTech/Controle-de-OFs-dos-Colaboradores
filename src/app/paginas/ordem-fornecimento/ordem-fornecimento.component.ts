@@ -11,34 +11,42 @@ import { FormsModule } from '@angular/forms';
 export class OrdemFornecimentoComponent {
   ordemFornecimentos = [
     {
-    id: '1',
+    id: 1,
     colaborador: 'Fabio',
     descricao: 'Instalação de Software',
     status: 'Iniciada',
-    criacao: '20/02/25',
-    atualizacao: '25/02/25'
+    criacao: '20/02/2025',
+    atualizacao: '25/02/2025'
     },
     {
-      id: '2',
+      id: 2,
       colaborador: 'Shirley',
       descricao: 'Manutenção da impressora',
       status: 'Iniciada',
-      criacao: '15/01/25',
-      atualizacao: '23/02/25'
+      criacao: '15/01/2025',
+      atualizacao: '23/02/2025'
       },
   ]
 
-  id = "";
+  id = 3;
   colaborador = "";
   descricao = "";
-  status = "";
+  status = "Pendente de Cadastramento";
   criacao = "";
+
+  dataAtual: Date = new Date();
   adicionarOf(){
     this.ordemFornecimentos.push({id: this.id,
                                   colaborador: this.colaborador,
                                   descricao: this.descricao,
                                   status: this.status,
-                                  criacao: "25/02/25",
+                                  criacao: this.dataAtual.toLocaleDateString(),
                                   atualizacao: ""})
+      this.id++;
   }
+
+  idProcurado = 0;
+  statusProcurado = "Pendente de Cadastramento";
+  colaboradorProcurado = "";
+  criacaoProcurado = "";
 }
