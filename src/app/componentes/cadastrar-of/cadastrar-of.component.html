@@ -1,0 +1,34 @@
+<form [formGroup]="ordemFornecimento" class="example-form">
+    <div id="formParte1">
+        <mat-form-field appearance="outline">
+          <mat-label>ID</mat-label>
+          <input matInput value="0" readonly>
+        </mat-form-field>
+        
+        <mat-form-field appearance="outline">
+            <mat-label>Colaborador</mat-label>
+            <input formControlName="colaborador" matInput placeholder="Ex. Fabio">
+        </mat-form-field>
+    </div>
+    <div id="formParte2">
+        <div id="formParte2row1">
+            <mat-form-field appearance="outline">
+                <mat-label>Status</mat-label>
+                <mat-select>
+                  @for (stats of status; track stats) {
+                    <mat-option [value]="stats">{{stats}}</mat-option>
+                  }
+                </mat-select>
+              </mat-form-field>
+            
+              <button mat-flat-button>Criar</button>
+        </div>
+        
+        <mat-form-field appearance="outline">
+            <mat-label>Descrição</mat-label>
+            <textarea cols="40" matInput placeholder="Ex. Este serviço trata..."></textarea>
+        </mat-form-field>
+    </div>
+  </form>
+
+  
