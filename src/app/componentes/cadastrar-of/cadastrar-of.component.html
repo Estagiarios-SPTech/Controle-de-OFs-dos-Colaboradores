@@ -1,13 +1,13 @@
-<form [formGroup]="ordemFornecimento" class="example-form">
+<form class="example-form">
     <div id="formParte1">
         <mat-form-field appearance="outline">
           <mat-label>ID</mat-label>
-          <input matInput value="0" readonly>
+          <input [(ngModel)]="id" name="id" matInput value="0" readonly>
         </mat-form-field>
         
         <mat-form-field appearance="outline">
             <mat-label>Colaborador</mat-label>
-            <input formControlName="colaborador" matInput placeholder="Ex. Fabio">
+            <input [(ngModel)]="colaborador" name="colaborador" matInput placeholder="Ex. Fabio">
         </mat-form-field>
     </div>
     <div id="formParte2">
@@ -26,7 +26,7 @@
         
         <mat-form-field appearance="outline">
             <mat-label>Descrição</mat-label>
-            <textarea cols="40" matInput placeholder="Ex. Este serviço trata..."></textarea>
+            <textarea [(ngModel)]="descricao" name="descricao" cols="40" matInput placeholder="Ex. Este serviço trata..."></textarea>
         </mat-form-field>
     </div>
   </form>

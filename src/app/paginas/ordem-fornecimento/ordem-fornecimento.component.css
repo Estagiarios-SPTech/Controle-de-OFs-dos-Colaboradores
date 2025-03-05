@@ -4,5 +4,12 @@ div{
     flex-direction: column;
     align-items: center;
     gap: 30px;
-    padding-top: 2%;
+}
+
+app-cadastrar-of{
+    margin-top: 2%;
+}
+
+app-consultar-of{
+    margin-bottom: 2%;
 }

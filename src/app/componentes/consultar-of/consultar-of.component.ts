@@ -4,7 +4,6 @@ import {MatSort, MatSortModule} from '@angular/material/sort';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import { CadastrarOFComponent } from '../cadastrar-of/cadastrar-of.component';
 
 interface ordemFornecimento {
   id: string;
@@ -18,7 +17,7 @@ interface ordemFornecimento {
   selector: 'app-consultar-of',
   styleUrl: 'consultar-of.component.css',
   templateUrl: 'consultar-of.component.html',
-  imports: [CadastrarOFComponent, MatFormFieldModule, MatInputModule, MatTableModule, MatSortModule, MatPaginatorModule],
+  imports: [MatFormFieldModule, MatInputModule, MatTableModule, MatSortModule, MatPaginatorModule],
 })
 export class ConsultarOFComponent implements AfterViewInit {
   ordemFornecimentos = [
@@ -38,6 +37,7 @@ export class ConsultarOFComponent implements AfterViewInit {
       criacao: '15/01/2025',
       atualizacao: '23/02/2025'
     },
+    
   ]
   displayedColumns: string[] = ['id', 'colaborador', 'descricao', 'status', 'criacao', 'atualizacao', 'acao'];
   dataSource: MatTableDataSource<ordemFornecimento>;
