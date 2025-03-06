@@ -1,0 +1,50 @@
+<form>
+    <div id="preenchimento">
+        <div class="campos">
+            <img id="iconeUsuarioMobile" src="iconeUsuario.png" alt="">
+            <mat-form-field appearance="outline">
+                <mat-label>Nome</mat-label>
+                <input name="name" [(ngModel)]="nome" matInput required #input="ngModel">
+                @if (input.hasError('required')) {
+                    <mat-error>Este campo precisa estar <strong>preenchido</strong></mat-error>
+                }
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>E-mail</mat-label>
+                <input name="email" [(ngModel)]="email" matInput required>
+                @if (input.hasError('required')) {
+                    <mat-error>Este campo precisa estar <strong>preenchido</strong></mat-error>
+                }
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Cargo</mat-label>
+                <mat-select required [(ngModel)]="cargo" name="cargo">
+                    <mat-option value="Colaborador">Colaborador</mat-option>
+                    <mat-option value="Responsável Técnico">Responsável Técnico</mat-option>
+                    <mat-option value="Gerente">Gerente</mat-option>
+                </mat-select>
+                @if (input.hasError('required')) {
+                    <mat-error>Este campo precisa estar <strong>preenchido</strong></mat-error>
+                }
+            </mat-form-field>
+        </div>
+        <div class="campos" *ngIf="cargo == 'Colaborador'">
+            <mat-form-field appearance="outline">
+                <mat-label>Gerente</mat-label>
+                <input name="gerente" [(ngModel)]="gerente" matInput required>
+                @if (input.hasError('required')) {
+                    <mat-error>Este campo precisa estar <strong>preenchido</strong></mat-error>
+                }
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Responsável Técnico</mat-label>
+                <input name="responsavelTecnico" [(ngModel)]="responsavelTecnico" required matInput>
+                @if (input.hasError('required')) {
+                    <mat-error>Este campo precisa estar <strong>preenchido</strong></mat-error>
+                }
+            </mat-form-field>
+        </div>
+        <img id="iconeUsuario" src="iconeUsuario.png" alt="">
+    </div>
+    <button mat-flat-button>Cadastrar</button>
+</form>
