@@ -17,4 +17,5 @@ export class CadastrarOFComponent {
   colaborador = ""
   descricao = ""
   status = ["Pendente de Cadastramento", "Iniciada", "Validada"]
+  statusEscolhido = ""
 }
