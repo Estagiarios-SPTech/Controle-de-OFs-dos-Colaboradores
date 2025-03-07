@@ -1,0 +1,53 @@
+
+<mat-grid-list  cols="2" rowHeight="1:1" class="background-container" [ngStyle]="{'background-image': 'url(/stefanini_background.jpeg)'}">
+    <mat-grid-tile>
+        <div class="tittle">
+            <span>Controle de Ordem <br> de Fornecimento</span>
+        </div>
+    </mat-grid-tile>
+    <mat-grid-tile class="login-section">
+        <div class="column">
+            <div class="login">
+                <img src="https://content.partnerpage.io/eyJidWNrZXQiOiJwYXJ0bmVycGFnZS5wcm9kIiwia2V5IjoibWVkaWEvY29udGFjdF9pbWFnZXMvZjM5NDEwOGUtNmQ1ZS00MGFjLWIzMjctYzFkMTQ3ZjE2YzAzLzRhMTI0YjQ3LWY2NGYtNDE1NS04ZWZlLTU3ODg5MDE1NThhNC5wbmciLCJlZGl0cyI6eyJ0b0Zvcm1hdCI6IndlYnAiLCJyZXNpemUiOnsid2lkdGgiOjEyMDAsImhlaWdodCI6NjI3LCJmaXQiOiJjb250YWluIiwiYmFja2dyb3VuZCI6eyJyIjoyNTUsImciOjI1NSwiYiI6MjU1LCJhbHBoYSI6MH19fX0=" 
+                    alt="logo" id="logo">
+                <span class="sub_tittle">LOGIN</span>
+                <form class="example-form">
+                <span>Email</span>
+                    <mat-form-field class="example-full-width">
+                
+                      <input matInput placeholder="Email" [formControl]="emailFormControl"
+                             [errorStateMatcher]="matcher">
+                      <mat-hint></mat-hint>
+                      <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                       Insira um endereço de e-mail válido
+                      </mat-error>
+                      <mat-error *ngIf="emailFormControl.hasError('required')">
+                        O e-mail é <strong>obrigatório</strong>.
+                      </mat-error>
+                    </mat-form-field>
+                  </form>
+                  <form class="example-form">
+                    <span>Senha</span>
+                    <mat-form-field class="example-full-width">
+                      <input matInput placeholder="Senha" [formControl]="passwordFormControl"
+                             [errorStateMatcher]="matcher">
+                      <mat-hint></mat-hint>
+                      <mat-error *ngIf="passwordFormControl.hasError('pattern') && !passwordFormControl.hasError('required')">
+                        A senha precisa conter 8 caracteres minusculo e maiusculo, 1 número e  1 especial.
+                      </mat-error>
+                      <mat-error *ngIf="passwordFormControl.hasError('required')">
+                        A senha é <strong>obrigatória</strong>.
+                      </mat-error>
+                    </mat-form-field>
+                  </form>
+        
+                <button (click)="validateForm()">LOGIN</button>
+                <a href="">
+                    Esqueceu a senha?
+                </a>
+            </div>
+        </div>
+    </mat-grid-tile>
+</mat-grid-list>
+
+
