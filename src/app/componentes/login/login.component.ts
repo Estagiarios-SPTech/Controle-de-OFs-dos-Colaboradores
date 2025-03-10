@@ -1,5 +1,5 @@
 import { NgStyle, CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Host, HostListener } from '@angular/core';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -31,6 +31,24 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrl: './login.component.css',
 })
 export class LoginComponent {
+  coluna = 2
+  width: number;
+
+  constructor(){
+    this.width = window.innerWidth
+    this.alterarColuna()
+  }
+  @HostListener('window:resize')
+  alterarColuna(){
+    this.width = window.innerWidth
+    if(this.width < 800){
+      this.coluna = 1
+    }
+    else{
+      this.coluna = 2
+    }
+  }
+
   emailFormControl = new FormControl('', [
     Validators.required,
     Validators.email,
