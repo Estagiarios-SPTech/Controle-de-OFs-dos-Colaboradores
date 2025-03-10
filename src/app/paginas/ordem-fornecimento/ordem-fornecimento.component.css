@@ -1,0 +1,25 @@
+div{
+    background-color: #EBEBEB;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+h1{
+    align-self: flex-start;
+    background-color: #D9D9D9;
+    width: 98%;
+    padding-left: 2%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    margin: 0;
+}
+
+app-consultar-of{
+    margin-bottom: 2%;
+    height: 50%;
+}
+app-cadastrar-of{
+    height: 50%;
+}

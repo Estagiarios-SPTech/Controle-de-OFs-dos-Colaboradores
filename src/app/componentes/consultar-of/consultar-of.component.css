@@ -1,0 +1,27 @@
+#pagina{
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 800px;
+    padding: 5px;
+}
+
+mat-form-field{
+    width: 100%;
+}
+
+#colunaHeader{
+    background-color: #D9D9D9;
+    font-weight: bold;
+}
+
+@media(max-width: 810px){
+    #pagina{
+        width: 360px;
+    }
+    .mat-elevation-z8{
+        width: 100%;
+        overflow-x: scroll;
+    }
+}
+

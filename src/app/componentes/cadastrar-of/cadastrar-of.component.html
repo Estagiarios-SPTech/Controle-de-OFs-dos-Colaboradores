@@ -1,0 +1,40 @@
+<form class="example-form">
+    <div id="formParte1">
+        <mat-form-field appearance="outline">
+          <mat-label>ID</mat-label>
+          <input [(ngModel)]="id" name="id" matInput value="0" readonly >
+        </mat-form-field>
+        
+        <mat-form-field appearance="outline">
+            <mat-label>Colaborador</mat-label>
+            <input #input="ngModel" [(ngModel)]="colaborador" required name="colaborador" matInput placeholder="Ex. Fabio">
+            @if (input.hasError('required')) {
+              <mat-error>Este campo precisa estar <strong>preenchido</strong></mat-error>
+            }
+        </mat-form-field>
+    </div>
+    <div id="formParte2">
+        <div id="formParte2row1">
+            <mat-form-field appearance="outline">
+                <mat-label>Status</mat-label>
+                <mat-select [(ngModel)]="statusEscolhido" name="status" required>
+                  @for (stats of status; track stats) {
+                    <mat-option [value]="stats">{{stats}}</mat-option>
+                  }
+                </mat-select>
+                @if (input.hasError('required')) {
+                  <mat-error>Este campo precisa estar <strong>preenchido</strong></mat-error>
+                }
+              </mat-form-field>
+            
+              <button (click)="criarOf()" mat-flat-button>Criar</button>
+        </div>
+        
+        <mat-form-field appearance="outline">
+            <mat-label>Descrição</mat-label>
+            <textarea [(ngModel)]="descricao" name="descricao" cols="40" matInput placeholder="Ex. Este serviço trata..."></textarea>
+        </mat-form-field>
+    </div>
+  </form>
+
+  
