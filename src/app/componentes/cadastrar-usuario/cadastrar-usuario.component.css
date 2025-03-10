@@ -1,0 +1,58 @@
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    border: 1px solid black;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    width: 800px;
+}
+
+img{
+    width: 300px;
+}
+
+#preenchimento{
+    margin-top: 3%;
+    display: flex;
+    justify-content: center;
+    gap: 10%;
+}
+
+button{
+    margin-bottom: 2%;
+}
+
+.campos{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#iconeUsuarioMobile{
+    display: none;
+}
+
+@media(max-width: 760px){
+    form{
+        width: 250px;
+    }
+    #preenchimento{
+        flex-direction: column;
+        align-items: center;
+    }
+    img{
+        margin-bottom: 10%;
+        width: 100%;
+    }
+    #iconeUsuarioMobile{
+        display: block;
+    }
+    #iconeUsuario{
+        display: none;
+    }
+    button{
+        margin-top: 10%;
+    }
+}

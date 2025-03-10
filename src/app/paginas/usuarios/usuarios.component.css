@@ -1,0 +1,17 @@
+div{
+    background-color: #EBEBEB;
+}
+
+h1{
+    background-color: #D9D9D9;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    margin: 0;
+    padding-left: 2%;
+    width: 98%;
+}
+
+app-cadastrar-usuario{
+    display: flex;
+    justify-content: center;
+}
