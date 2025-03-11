@@ -6,6 +6,7 @@ div{
 
 .mat-elevation-z8{
   width: 95%;
+  overflow: auto;
 }
 
 table {
