@@ -1,0 +1,15 @@
+#pagina{
+    background-color: #EBEBEB;
+}
+
+#cartoes, #buscaComGrafico{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+@media(max-width: 700px){
+    #cartoes{
+        flex-direction: column;
+    }
+}
