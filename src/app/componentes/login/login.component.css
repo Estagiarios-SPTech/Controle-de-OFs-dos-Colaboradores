@@ -3,57 +3,34 @@
     margin: 0;
     padding: 0;
 }
+
 mat-grid-list {
-    height: 100dvh;
-    position: relative;
-    overflow: hidden;
     background-size: cover; 
     background-position: center;
     background-repeat: no-repeat;
 }
-  
-
-  mat-grid-tile:first-child {
-    position: absolute; 
-    top: 0;
-    left: 0;
-    width: 100%; 
-    height: 100%; 
-}
-  mat-grid-tile .login-section{
-    position: fixed; 
-    background-color: #26215373;
-    height: 100dvh;
-  }
-
-  .example-form {
-    min-width: 150px;
-    max-width: 500px;
-    width: 100%;
-
-  }
-  
-  .example-full-width {
-    width: 100%;
-  }
-
 
 .tittle {
     font-family: Helvetica, sans-serif;
     color: white;
-    font-size: 5vh;
-    font-weight: 500;
-    height: 100%;
-    width: 80%;
-    position: relative;
-    display: block;
+    font-size: 7vh;
+    font-weight: bold;
+    height: 80%;
+    width: 100%;
     text-align: center;
+    display: flex;
+    justify-content: center;
 }
 
-.tittle span {
-    top: 10dvh;
-    left: 10vh;
-    position: absolute;
+.example-form {
+min-width: 150px;
+max-width: 500px;
+width: 100%;
+
+}
+
+.example-full-width {
+width: 100%;
 }
 
 .column {
@@ -144,57 +121,27 @@ button:hover {
 }
 
 @media (max-width: 900px) {
-    .super_container {
-        grid-template-columns: 1fr;
-        height: 100vh;
-        width: auto;
-        overflow-x: hidden;
+    mat-grid-list{
+        overflow-y: hidden;
     }
-
-    mat-grid-tile {
-        height: auto; 
+    .column{
+        height: 100%;
     }
-
-    .tittle {
-        font-size: 4vh;
-        margin-bottom: 20px;
-        /* height: 30dvh; */
+    .login{
+        height: 95%;
     }
-
-    .column {
-        height: 70dvh;
-        padding: 20px;
+    #logo{
+        width: 50%;
+        margin: 0;
     }
-
-    .login {
-        width: 90%;
-        max-width: 400px;
-        height: auto;
-        padding: 15px;
+    .login button{
+        padding-top: 2%;
+        padding-bottom: 2%;
+        margin: 0;
     }
-
-    /* #logo {
-        width: auto;
-        height: 25dvh;
-    } */
-
-    .sub_tittle {
-        font-size: 3.5dvh;
-    }
-
-    button {
-        height: 40px;
-        width: 50vh;
-        max-width: 400px;
-    }
-
-    label input {
-        height: 30px;
-        width: 50vh;
-        max-width: 400px;
-    }
-
-    .login>* {
-        margin: 1dvh;
+    .login a{
+        margin-top: 2%;
+        margin-bottom: 10%;
+        font-size: 90%;
     }
 }

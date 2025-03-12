@@ -32,6 +32,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class LoginComponent {
   coluna = 2
+  rowspan = 1
   width: number;
 
   constructor(){
@@ -41,11 +42,13 @@ export class LoginComponent {
   @HostListener('window:resize')
   alterarColuna(){
     this.width = window.innerWidth
-    if(this.width < 800){
+    if(this.width < 900){
       this.coluna = 1
+      this.rowspan = 4
     }
     else{
       this.coluna = 2
+      this.rowspan = 1
     }
   }
 
