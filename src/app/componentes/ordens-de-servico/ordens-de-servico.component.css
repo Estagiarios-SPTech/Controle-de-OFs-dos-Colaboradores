@@ -1,0 +1,29 @@
+.card{
+    background-color: #6168EC;
+    color: white;
+    font-family: Helvetica, sans-serif;
+    font-weight: 600;
+    font-size: larger;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.charts {
+    width: 100dvh;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+}
+
+.container {
+    height: 60dvh;
+    width: 50dvh;
+    background-color: antiquewhite;
+}
+
+canvas {
+    display: block;
+    width: 60%;
+    max-width: 300px;
+    height: 50%;
+}

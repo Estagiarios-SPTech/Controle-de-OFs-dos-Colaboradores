@@ -5,11 +5,12 @@ import { FooterComponent } from './componentes/footer/footer.component';
 import { HeaderComponent } from './componentes/header/header.component';
 import { SidebarComponent } from './componentes/sidebar/sidebar.component';
 import { LoginComponent } from './componentes/login/login.component';
+import { OrdensDeServicoComponent } from './componentes/ordens-de-servico/ordens-de-servico.component';
 
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, HeaderComponent, FooterComponent, SidebarComponent, LoginComponent],
+  imports: [RouterOutlet, HeaderComponent, FooterComponent, SidebarComponent, LoginComponent, OrdensDeServicoComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
