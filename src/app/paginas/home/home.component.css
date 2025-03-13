@@ -1,0 +1,28 @@
+#pagina{
+    background-color: #EBEBEB;
+}
+
+#cartoes, #buscaComGrafico{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+app-consultar-usuario, app-grafico-empilhado{
+    width: 40%;
+}
+
+@media(max-width: 700px){
+    #cartoes{
+        flex-direction: column;
+    }
+    #buscaComGrafico{
+        flex-direction: column;
+        gap: 10px;
+    }
+    app-consultar-usuario, app-grafico-empilhado{
+        width: 80%;
+    }
+}

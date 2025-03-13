@@ -8,6 +8,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 15px 0px;
+    border-bottom: 4px solid rgba(0, 0, 0, 0.1);
 }
 
 .logo {
@@ -37,8 +38,12 @@
     font-weight: 600;
     font-family: Helvetica, sans-serif;
     padding: 0px 10px;
-    
+    cursor: pointer;
 }
 .tittle_itens {
     margin: 5px;
+}
+
+button{
+    background-color: #C5D8FB;
 }

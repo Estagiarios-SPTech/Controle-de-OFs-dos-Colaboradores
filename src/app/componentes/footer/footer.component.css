@@ -11,7 +11,7 @@ footer {
     bottom: 0;
     position: relative;
     flex-direction: column;
-   
+    border-top: 4px solid rgba(0, 0, 0, 0.1);
 }
 
 #logo {
