@@ -4,6 +4,7 @@ import { FooterComponent } from './componentes/footer/footer.component';
 import { SidebarComponent } from './componentes/sidebar/sidebar.component';
 
 
+
 @Component({
   selector: 'app-root',
   imports: [FooterComponent, SidebarComponent],
