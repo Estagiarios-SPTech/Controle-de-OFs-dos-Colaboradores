@@ -1,4 +1,4 @@
-.card{
+.card {
     background-color: #6168EC;
     color: white;
     font-family: Helvetica, sans-serif;
@@ -9,21 +9,82 @@
 }
 
 .charts {
-    width: 100dvh;
-    height: auto;
+    gap: 5dvh;
+    margin: 5dvh;
+    display: grid;
+    height: fit-content;
+    grid-template-columns: 50vh 2fr;
+    align-items: flex-start;
+    justify-content: center;
+
+}
+
+.charts>* {
+    box-shadow: 0px 0px 5px black;
+    font-family: Arial, Helvetica, sans-serif;
+    /* height: fit-content; */
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 }
 
 .container {
-    height: 60dvh;
-    width: 50dvh;
-    background-color: antiquewhite;
+    /* max-width: 500px; */
+    /* width: 40%; */
+    background-color: rgb(235, 235, 235);
+    grid-column: 1;
+    height: 100%;
+}
+
+span {
+    align-self: center;
+    margin: 1dvh;
+}
+
+.container canvas {
+
+    /* width: auto; */
+}
+
+.container-2 {
+    grid-column: 2;
+    height: 100%;
+    /* width: 60%; */
+    background-color: rgb(235, 235, 235);
+}
+
+.container-2 canvas {
+
 }
 
 canvas {
-    display: block;
-    width: 60%;
-    max-width: 300px;
-    height: 50%;
+    /* height: 100%; */
+}
+
+
+@media (max-width: 900px) {
+    .charts {
+        margin: 0;
+        gap: 0;
+        align-items: center;
+        justify-content: center;
+        grid-template-columns: 1fr;
+    }
+
+    .container {
+        /* width: 100%; */
+
+    }
+
+    .container canvas {
+
+    }
+
+    .container-2 {
+        grid-column: 1;
+        /* height: 100%; */
+    }
+
+    .container-2 canvas {
+       
+    }
 }
