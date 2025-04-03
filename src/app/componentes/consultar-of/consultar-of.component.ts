@@ -4,18 +4,20 @@ import {MatSort, MatSortModule} from '@angular/material/sort';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import { OrdemFornecimentoService, ordemFornecimento } from '../../services/ordem-fornecimento.service';
+import { OrdemFornecimentoService } from '../../services/ordem-fornecimento.service';
+import { OrdemFornecimento } from '../../model/ordem-fornecimento';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-consultar-of',
   styleUrl: 'consultar-of.component.css',
   templateUrl: 'consultar-of.component.html',
-  imports: [MatFormFieldModule, MatInputModule, MatTableModule, MatSortModule, MatPaginatorModule],
+  imports: [MatFormFieldModule, MatInputModule, MatTableModule, MatSortModule, MatPaginatorModule, CommonModule],
 })
 export class ConsultarOFComponent{
   ofService = inject(OrdemFornecimentoService)
   displayedColumns: string[] = ['id', 'colaborador', 'descricao', 'status', 'criacao', 'atualizacao', 'acao'];
-  dataSource: MatTableDataSource<ordemFornecimento>;
+  dataSource: MatTableDataSource<OrdemFornecimento>;
   
   @ViewChild(MatPaginator) paginator: MatPaginator = new MatPaginator();
   @ViewChild(MatSort) sort: MatSort = new MatSort();
@@ -23,12 +25,12 @@ export class ConsultarOFComponent{
   constructor() {
     // Assign the data to the data source for the table to render
     this.dataSource = new MatTableDataSource(this.ofService.ordemFornecimentos);
+    this.ofService.listar();
     setInterval(() => {
       this.dataSource = new MatTableDataSource(this.ofService.ordemFornecimentos);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-    }, 1000);
-    //ate funciona, mas o dado não permanece guardado ao recarregar a página
+    }, 100);
   }
 
   applyFilter(event: Event) {

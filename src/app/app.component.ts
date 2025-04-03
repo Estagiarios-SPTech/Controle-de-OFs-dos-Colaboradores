@@ -11,7 +11,7 @@ import { RouterOutlet } from '@angular/router';
 //  FooterComponent, SidebarComponent, UsuariosComponent, OrdemFornecimentoComponent, HomeComponent, LoginComponent 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [SidebarComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

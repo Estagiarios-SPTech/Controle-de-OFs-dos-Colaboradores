@@ -10,5 +10,5 @@ import { ConsultarOFComponent } from '../../componentes/consultar-of/consultar-o
   styleUrl: './ordem-fornecimento.component.css'
 })
 export class OrdemFornecimentoComponent {
- 
+
 }
