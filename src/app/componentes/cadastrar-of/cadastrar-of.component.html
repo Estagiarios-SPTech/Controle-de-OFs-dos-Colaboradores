@@ -2,11 +2,15 @@
     <div id="formParte1">
         <mat-form-field appearance="outline">
             <mat-label>Colaborador</mat-label>
-            <input #input="ngModel" [(ngModel)]="ordemFornecimento.collaborator.id" required name="colaborador" matInput placeholder="Ex. Fabio">
+            <mat-select #input="ngModel" [(ngModel)]="ordemFornecimento.collaborator.employee.name" required name="colaborador" required>
+              @for (colaborador of usuarioService.colaboradores; track colaborador) {
+                <mat-option [value]="colaborador">{{colaborador}}</mat-option>
+              }
+            </mat-select>
             @if (input.hasError('required')) {
               <mat-error>Este campo precisa estar <strong>preenchido</strong></mat-error>
             }
-        </mat-form-field>
+          </mat-form-field>
     </div>
     <div id="formParte2">
         <div id="formParte2row1">
@@ -27,7 +31,10 @@
         
         <mat-form-field appearance="outline">
             <mat-label>Descrição</mat-label>
-            <textarea [(ngModel)]="ordemFornecimento.description" name="descricao" cols="40" matInput placeholder="Ex. Este serviço trata..."></textarea>
+            <textarea [(ngModel)]="ordemFornecimento.description" name="descricao" cols="40" matInput placeholder="Ex. Este serviço trata..." required></textarea>
+            @if (input.hasError('required')) {
+              <mat-error>Este campo precisa estar <strong>preenchido</strong></mat-error>
+            }
         </mat-form-field>
     </div>
   </form>

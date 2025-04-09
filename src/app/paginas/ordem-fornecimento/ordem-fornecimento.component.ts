@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 
 import { CadastrarOFComponent } from '../../componentes/cadastrar-of/cadastrar-of.component';
 import { ConsultarOFComponent } from '../../componentes/consultar-of/consultar-of.component';
+
 
 @Component({
   selector: 'app-ordem-fornecimento',
@@ -10,5 +11,5 @@ import { ConsultarOFComponent } from '../../componentes/consultar-of/consultar-o
   styleUrl: './ordem-fornecimento.component.css'
 })
 export class OrdemFornecimentoComponent {
-
+  @ViewChild('consultarComponent')consultarComponent!: ConsultarOFComponent
 }

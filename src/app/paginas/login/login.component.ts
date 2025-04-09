@@ -6,6 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { RouterLink } from '@angular/router';
 
 
 /** Error when invalid control is dirty, touched, or submitted. */
@@ -26,6 +27,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
+    RouterLink
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',

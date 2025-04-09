@@ -1,5 +1,5 @@
 <div>
     <h1>Ordem de Serviço</h1>
-    <app-cadastrar-of></app-cadastrar-of>
-    <app-consultar-of></app-consultar-of>
+    <app-cadastrar-of (realizouCadastro)="consultarComponent.listar()"></app-cadastrar-of>
+    <app-consultar-of #consultarComponent></app-consultar-of>
 </div>

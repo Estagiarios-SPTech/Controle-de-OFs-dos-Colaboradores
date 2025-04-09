@@ -15,6 +15,10 @@ mat-form-field{
     font-weight: bold;
 }
 
+a{
+    cursor: pointer    
+}
+
 @media(max-width: 810px){
     #pagina{
         width: 360px;
