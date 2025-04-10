@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import Chart from 'chart.js/auto';
+import { UsuarioService} from '../../services/usuario.service';
+import { User } from '../../model/User';
 
 @Component({
   selector: 'app-grafico-empilhado',
@@ -8,15 +10,36 @@ import Chart from 'chart.js/auto';
   styleUrl: './grafico-empilhado.component.css'
 })
 export class GraficoEmpilhadoComponent implements OnInit {
-  ngOnInit() {
+  usuarioService = inject(UsuarioService)
+  usuarios: any[] = [];
+  quantidadeUsuarios: number = 0;
+  chart: Chart | null = null;
+ 
+  carregarUsuarios(): void {
+    this.usuarioService.select().subscribe(
+      (data) => {
+        this.usuarios = data;
+        this.quantidadeUsuarios = data.length; 
+        this.criarGrafico();
+      },
+      (error) => {
+        console.error('Erro ao carregar usuários:', error);
+      }
+    );
+  }
+  criarGrafico(): void {
     const ctx = document.getElementById('myChart') as HTMLCanvasElement;
+    
+    if (this.chart) {
+      this.chart.destroy();
+    }
 
-    new Chart(ctx, {
+    this.chart = new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: ['Ordem de Serviço', 'Colaborador'],
+        labels: ['Ordem de Serviço', 'Usuários'],
         datasets: [{
-          data: [20, 10],
+          data: [20, this.quantidadeUsuarios], // Usando a quantidade de usuários aqui
           backgroundColor: [
             '#FBBC04',
             '#8D34F9',
@@ -24,7 +47,6 @@ export class GraficoEmpilhadoComponent implements OnInit {
         }]
       },
       options: {
-        // Deixar na vertical
         indexAxis: 'y',
         maintainAspectRatio: false,
         scales: {
@@ -47,4 +69,11 @@ export class GraficoEmpilhadoComponent implements OnInit {
       }
     });
   }
+
+  ngOnInit() {
+    this.carregarUsuarios();
+  }
 }
+  
+  
+

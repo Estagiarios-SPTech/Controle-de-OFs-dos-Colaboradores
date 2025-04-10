@@ -1,34 +1,43 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
-export interface usuario{
-  id: string;
-  colaborador: string;
-  status: string;
-}
+import { Observable } from 'rxjs';
+import { User } from '../model/User';
+import { Employee } from '../model/Employee';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class UsuarioService {
 
-  constructor() { }
+  private urlUser:string = 'http://localhost:8080/users';
+  
+  
+  constructor(private http:HttpClient) {}
+       
+   loadUsers(): void {
+    this.select().subscribe(data => {
+        this.usuarios = data;
+    });
+}
 
-  usuarios: usuario[] = [
-        {
-          id: '1',
-          colaborador: 'Usuario01',
-          status: 'Disponível',
-        },
-        {
-          id: '2',
-          colaborador: 'Usuario02',
-          status: 'Aguardando Respostas',
-        },
-        {
-          id: '3',
-          colaborador: 'Usuario03',
-          status: 'Finalizando',
-        },
-        
-      ]
+  usuarios:User[] = [];
+  select():Observable<User[]>{
+    return this.http.get<User[]>(this.urlUser + "/findAll");
+  }
+
+  managers:User[] = [];
+  selectManager():Observable<User[]>{
+    return this.http.get<User[]>(this.urlUser + "/Managers");
+  }
+  
+  rts:User[] = [];
+  selectRt():Observable<User[]>{
+    return this.http.get<User[]>(this.urlUser + "/RTs");
+  }
+
+  signUp(obj:User):Observable<User>{
+    return this.http.post<User>(this.urlUser + "/new", obj);
+  }
+
 }
