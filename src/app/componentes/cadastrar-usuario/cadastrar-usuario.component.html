@@ -45,14 +45,14 @@
             <mat-form-field appearance="outline">
                 <mat-label>Responsável Técnico</mat-label>
                 <mat-select required [(ngModel)]="selectRt" name="rt">
-                    <mat-option *ngFor="let rt of rts" [value]="rt.name">
-                        {{ rt.name }}
-                    </mat-option>
+                    @for (rt of rts; track rt) {
+                        <mat-option [value]="rt"> {{ rt.name }} </mat-option>
+                    }
                 </mat-select>
                 <mat-error *ngIf="!selectRt">Este campo precisa estar <strong>preenchido</strong></mat-error>   
             </mat-form-field>
     </div>
     <img id="iconeUsuario" src="iconeUsuario.png" alt="">
     </div>
-    <button (click)="teste(selectManager)" mat-flat-button>Cadastrar</button>
+    <button (click)="cadastrar()" mat-flat-button>Cadastrar</button>
 </form>
