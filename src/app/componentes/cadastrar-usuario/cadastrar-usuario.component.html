@@ -20,24 +20,22 @@
                 <mat-label>Cargo</mat-label>
                 <mat-select required [(ngModel)]="user.role" name="cargo" #inputRole="ngModel">
                     <mat-option value="Colaborador">Colaborador</mat-option>
-                    <mat-option value="RT">Responsável Técnico</mat-option>
-                    <mat-option value="Gerente">Gerente</mat-option>
+                    <mat-option value="rt">Responsável Técnico</mat-option>
+                    <mat-option value="manager">Gerente</mat-option>
                 </mat-select>
                 @if (inputRole.hasError('required')) {
                     <mat-error>Este campo precisa estar <strong>preenchido</strong></mat-error>
                 }
             </mat-form-field>
         </div>
-        <div class="campos" *ngIf="cargo == 'Colaborador'">
+        <div class="campos" *ngIf="user.role == 'Colaborador'">
 
             <mat-form-field appearance="outline">
                 <mat-label>Gerente</mat-label>
-                <mat-select required [(ngModel)]="selectManager" name="manager">
-                
+                <mat-select required [(ngModel)]="selectManager" name="manager">               
                        @for (manager of managers; track manager) {
-                        <mat-option [value]="manager"> {{ manager.name }} </mat-option>
-                       }
-                
+                        <mat-option [value]="manager.name"> {{ manager.name }} </mat-option>
+                       }    
                 </mat-select>
                 <mat-error *ngIf="!selectManager">Este campo precisa estar <strong>preenchido</strong></mat-error>            
             </mat-form-field>
@@ -46,7 +44,7 @@
                 <mat-label>Responsável Técnico</mat-label>
                 <mat-select required [(ngModel)]="selectRt" name="rt">
                     @for (rt of rts; track rt) {
-                        <mat-option [value]="rt"> {{ rt.name }} </mat-option>
+                        <mat-option [value]="rt.name"> {{ rt.name }} </mat-option>
                     }
                 </mat-select>
                 <mat-error *ngIf="!selectRt">Este campo precisa estar <strong>preenchido</strong></mat-error>   

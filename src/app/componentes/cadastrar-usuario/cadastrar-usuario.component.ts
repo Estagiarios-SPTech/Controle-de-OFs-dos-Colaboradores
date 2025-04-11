@@ -34,6 +34,9 @@ export class CadastrarUsuarioComponent {
   selectManager: string = '';
   selectRt: string | null = null;
 
+  selectedManagerObj: User | null = null;
+  selectedRtObj: User | null = null;
+
   constructor(public usuarioService: UsuarioService, public employeeService: EmployeeService) { }
 
   ngOnInit(): void {
@@ -70,22 +73,32 @@ export class CadastrarUsuarioComponent {
   // teste(texto: string): void {
   //   console.log(texto);
   // }
+onManagerSelect(managerName: string): void {
+  this.selectedManagerObj = this.managers.find(m => m.name === this.selectManager) || null;
+  this.selectManager = managerName;
+}
+
+onRtSelect(rtName: string): void {
+  this.selectedRtObj = this.rts.find(r => r.name === rtName) || null;
+  this.selectRt = rtName;
+}
 
   cadastrar(): void {
     this.usuarioService.signUp(this.user).subscribe({
       next: (usuarioCriado) => {
         console.log("cadastro feito com sucesso" + this.user);
+        
         if (this.user.role === 'Colaborador') {
-          const managerObj = this.managers.find(m => m.name === this.selectManager);
-          if (managerObj) {
-            this.employee.manager = managerObj;
+          if(this.selectManager){
+            this.employee.manager = {name: this.selectManager} as User;
           }
 
-          const rtObj = this.rts.find(r => r.name === this.selectRt);
-          if (rtObj) {
-            this.employee.rt = rtObj;
+          if (this.selectRt) {
+            this.employee.rt = { name: this.selectRt } as User;
           }
         }
+        console.log("employee esta sendo enviado:", this.employee)
+
         this.employee.employee = usuarioCriado;
         this.employee.status = "Disponivel";
 
