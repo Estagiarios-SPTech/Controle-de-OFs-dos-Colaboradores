@@ -25,7 +25,7 @@ export class CadastrarOFComponent {
   ordemFornecimento = new OrdemFornecimento()
 
   ngOnInit(){
-    this.usuarioService.loadUsers()
+    this.usuarioService.listarNomes()
   }
 
   cadastrar(){

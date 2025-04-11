@@ -17,12 +17,21 @@ export class UsuarioService {
   
   constructor(private http:HttpClient) {}
        
-   loadUsers(): void {
+  loadUsers(): void {
     this.select().subscribe(data => {
         this.usuarios = data;
     });
-}
+  }
 
+  verificarUsuario():Observable<User[]>{
+    return this.http.get<User[]>(this.url + "/listarNomes");
+  }
+
+  listarNomes():void{
+    this.verificarUsuario()
+    .subscribe(retorno => this.colaboradores = retorno);
+  }
+  
   usuarios:User[] = [];
   select():Observable<User[]>{
     return this.http.get<User[]>(this.urlUser + "/findAll");
