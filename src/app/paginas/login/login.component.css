@@ -46,7 +46,7 @@ width: 100%;
     width: 25dvh;
     height: auto;
     aspect-ratio: 16 / 9;
-    object-fit: contain;
+    object-fit: cover;
     align-self: center;
 }
 
@@ -63,7 +63,7 @@ width: 100%;
     flex-direction: column;
     background-color: #ffffffe0;
     height: 90dvh;
-    width: 80%;
+    width: 90dvh;
     border-radius: 40px;
     padding: 25px;
     justify-content: center;
@@ -108,11 +108,15 @@ a {
 button {
     background-color: #1E1285;
     color: white;
+    font-weight: 600;
+    font-size: larger;
+
     font-family: Helvetica, sans-serif;
     width: 100%;
-    height: 30px;
+    height: 40px;
     border-radius: 5px;
     max-width: 400px;
+    align-self: center;
 
 }
 
