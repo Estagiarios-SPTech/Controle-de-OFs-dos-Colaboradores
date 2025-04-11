@@ -1,48 +1,45 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { User } from '../model/user';
-import { HttpClient } from '@angular/common/http';
-
-export interface usuario{
-  id: string;
-  colaborador: string;
-  status: string;
-}
+import { User } from '../model/User';
+import { Employee } from '../model/Employee';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class UsuarioService {
   private url = "http://localhost:8080/users"
   colaboradores:User[] = []
 
-  constructor(private http:HttpClient) { }
+  private urlUser:string = 'http://localhost:8080/users';
+  
+  
+  constructor(private http:HttpClient) {}
+       
+   loadUsers(): void {
+    this.select().subscribe(data => {
+        this.usuarios = data;
+    });
+}
 
-  verificarUsuario():Observable<User[]>{
-    return this.http.get<User[]>(this.url + "/listarNomes");
+  usuarios:User[] = [];
+  select():Observable<User[]>{
+    return this.http.get<User[]>(this.urlUser + "/findAll");
   }
 
-  listarNomes():void{
-    this.verificarUsuario()
-    .subscribe(retorno => this.colaboradores = retorno);
+  managers:User[] = [];
+  selectManager():Observable<User[]>{
+    return this.http.get<User[]>(this.urlUser + "/Managers");
+  }
+  
+  rts:User[] = [];
+  selectRt():Observable<User[]>{
+    return this.http.get<User[]>(this.urlUser + "/RTs");
   }
 
-  usuarios: usuario[] = [
-        {
-          id: '1',
-          colaborador: 'Usuario01',
-          status: 'Disponível',
-        },
-        {
-          id: '2',
-          colaborador: 'Usuario02',
-          status: 'Aguardando Respostas',
-        },
-        {
-          id: '3',
-          colaborador: 'Usuario03',
-          status: 'Finalizando',
-        },
-        
-      ]
+  signUp(obj:User):Observable<User>{
+    return this.http.post<User>(this.urlUser + "/new", obj);
+  }
+
 }

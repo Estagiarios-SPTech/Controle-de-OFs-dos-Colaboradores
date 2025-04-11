@@ -4,7 +4,8 @@ import {MatSort, MatSortModule} from '@angular/material/sort';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import { UsuarioService, usuario } from '../../services/usuario.service';
+import { UsuarioService} from '../../services/usuario.service';
+import { User } from '../../model/User';
 
 @Component({
   selector: 'app-consultar-usuario',
@@ -12,11 +13,12 @@ import { UsuarioService, usuario } from '../../services/usuario.service';
   templateUrl: './consultar-usuario.component.html',
   styleUrl: './consultar-usuario.component.css'
 })
+
 export class ConsultarUsuarioComponent implements AfterViewInit{
   usuarioService = inject(UsuarioService)
 
-  displayedColumns: string[] = ['id', 'colaborador', 'status'];
-  dataSource: MatTableDataSource<usuario>;
+  displayedColumns: string[] = ['id', 'nome', 'email', 'role'];
+  dataSource: MatTableDataSource<User>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator = new MatPaginator;
   @ViewChild(MatSort) sort: MatSort = new MatSort;
@@ -24,6 +26,12 @@ export class ConsultarUsuarioComponent implements AfterViewInit{
   constructor() {
     // Assign the data to the data source for the table to render
     this.dataSource = new MatTableDataSource(this.usuarioService.usuarios);
+  } 
+
+  ngOnInit() {
+    this.usuarioService.select().subscribe(users => {
+      this.dataSource.data = users;
+    });
   }
 
   ngAfterViewInit() {
