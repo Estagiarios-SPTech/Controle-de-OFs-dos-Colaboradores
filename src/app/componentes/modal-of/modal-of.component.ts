@@ -29,7 +29,7 @@ export class ModalOfComponent {
   status = ["Pendente de Cadastramento", "Iniciada", "Validada"]
 
   ngOnInit(){
-    this.usuarioService.listarNomes()
+    this.usuarioService.loadUsers()
   }
 
 
