@@ -1,11 +1,16 @@
 <div id="pagina">
-    <div id="cartoes">
+    <div class="secao">
         <app-card routerLink="../ordemFornecimento" [img]="'iconeOF.png'" [titulo]="'Ordens de Serviço'"></app-card>
         <app-card routerLink="../usuario"  [img]="'iconeUsuarioCard.png'" [titulo]="'Usuário'"></app-card>
         <app-card [img]="'iconeRelatorio.png'" [titulo]="'Relatórios'"></app-card>
     </div>
-    <div id="buscaComGrafico">
+    <div class="secao">
         <app-consultar-usuario></app-consultar-usuario>
         <app-grafico-empilhado></app-grafico-empilhado>
+    </div>
+    <app-card-azul></app-card-azul>
+    <div id="secaoGraficos" class="secao">
+        <app-grafico-pie-of></app-grafico-pie-of>
+        <app-grafico-barra-of></app-grafico-barra-of>
     </div>
 </div>

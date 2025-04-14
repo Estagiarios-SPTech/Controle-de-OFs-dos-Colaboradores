@@ -1,11 +1,11 @@
 #pagina{
     background-color: #EBEBEB;
+    padding-inline: 5%;
 }
 
-#cartoes, #buscaComGrafico{
+.secao{
     display: flex;
-    justify-content: space-around;
-    align-items: center;
+    justify-content: space-between;
     padding-top: 10px;
     padding-bottom: 10px;
 }
@@ -14,12 +14,27 @@ app-consultar-usuario, app-grafico-empilhado{
     width: 40%;
 }
 
+#secaoGraficos{
+    height: 400px;
+}
+
+app-grafico-pie-of, app-grafico-barra-of{
+    height: 100%;
+}
+
+
+app-grafico-pie-of{
+    width: 25%;
+}
+
+app-grafico-barra-of{
+    width: 70%;
+}
+
 @media(max-width: 700px){
-    #cartoes{
+    .secao{
         flex-direction: column;
-    }
-    #buscaComGrafico{
-        flex-direction: column;
+        align-items: center;
         gap: 10px;
     }
     app-consultar-usuario, app-grafico-empilhado{

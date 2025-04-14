@@ -1,23 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { MatCardModule } from '@angular/material/card';
 import { Chart, registerables } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 
 @Component({
-  selector: 'app-ordens-de-servico',
-  imports: [MatCardModule],
-  templateUrl: './ordens-de-servico.component.html',
-  styleUrl: './ordens-de-servico.component.css'
+  selector: 'app-grafico-pie-of',
+  imports: [],
+  templateUrl: './grafico-pie-of.component.html',
+  styleUrl: './grafico-pie-of.component.css'
 })
-export class OrdensDeServicoComponent implements OnInit {
+export class GraficoPieOfComponent implements OnInit {
   chart: Chart | undefined;
-  chartBar: Chart | undefined;
 
   ngOnInit() {
     const ctx = document.getElementById('chart-pie') as HTMLCanvasElement;
-    const ctx2 = document.getElementById('chart-bars') as HTMLCanvasElement;
 
-    OrdensDeServicoComponent.constructor(); {
+    GraficoPieOfComponent.constructor(); {
       // Register all required Chart.js components globally
       Chart.register(...registerables);
       Chart.register(ChartDataLabels);
@@ -83,55 +80,5 @@ export class OrdensDeServicoComponent implements OnInit {
         }
       }
     });
-
-    this.chartBar = new Chart(ctx2, {
-      type: 'bar',
-      data: {
-        labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho'],
-        datasets: [{
-          label: 'Ordens de Fornecimento',
-          data: [65, 59, 80, 81, 56, 55, 40],
-          borderWidth: 1,
-          backgroundColor: '#A642F4'
-        }]
-      }, 
-      options: {
-        responsive: true,
-        scales:{
-          x:{
-            grid:{
-              display: false
-            },
-            ticks:{
-              font:{
-                size: 15,
-                weight: 'bold'
-              }
-            }
-          },
-          y:{
-            border:{
-              display: false
-            }
-          }
-        },
-        plugins: {
-          legend: {
-            display: false,
-          },
-          title:{
-            display: true,
-            text: 'Quantidade Mensal',
-            font:{
-              size: 20
-            }
-          },
-          datalabels:{
-            display: false
-          }
-        }
-      }
-    })
-
   }
 }

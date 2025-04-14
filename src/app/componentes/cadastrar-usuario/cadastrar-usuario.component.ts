@@ -9,7 +9,6 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { User } from '../../model/User';
 import { UsuarioService } from '../../services/usuario.service';
-import { Observable, switchMap } from 'rxjs';
 import { Employee } from '../../model/Employee';
 import { EmployeeService } from '../../services/employee.service';
 

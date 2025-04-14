@@ -1,7 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import Chart from 'chart.js/auto';
 import { UsuarioService} from '../../services/usuario.service';
-import { User } from '../../model/User';
 
 @Component({
   selector: 'app-grafico-empilhado',
@@ -64,6 +63,9 @@ export class GraficoEmpilhadoComponent implements OnInit {
           },
           legend:{
             display: false,
+          },
+          datalabels:{
+            display: false
           }
         }
       }
