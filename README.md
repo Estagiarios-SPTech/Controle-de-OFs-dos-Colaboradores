@@ -1,13 +1,21 @@
 # Controle de Ordens de Fornecimento dos Colaboradores
 ![Badge em Desenvolvimento](http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge)
 
-Com o intuito de tirar a necessidade do uso de planilhas para o controle das ordens de fornecimento, viemos com este projeto com o objetivo de
-automatizar essa função.
-
 ### Tópicos
+- [Descrição](#descrição)
 - [Requisitos](#requisitos)
 - [Como executar o projeto](#como-executar-o-projeto)
 - [Acesso](#acesso)
+
+## Descrição
+Com o intuito de tirar a necessidade do uso de planilhas para o controle das ordens de fornecimento, viemos com este projeto com o objetivo de
+automatizar essa função.
+
+<img style="width: 80%;" src="./public/telaHome.png">
+<img style="width: 80%;" src="./public/telaOf.png">
+<img style="width: 80%;"src="./public/telaUsuario.png">
+<img style="width: 80%;"src="./public/telaColaborador.png">
+
 
 ## Requisitos
 - Node 23 ou acima
