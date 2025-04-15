@@ -1,12 +1,19 @@
-# ControleDeOFsDosColaboradores
+# Controle de Ordens de Fornecimento dos Colaboradores
+![Badge em Desenvolvimento](http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge)
 
-Projeto gerado pelo [Angular CLI](https://github.com/angular/angular-cli) na versão 19.1.7.
+Com o intuito de tirar a necessidade do uso de planilhas para o controle das ordens de fornecimento, viemos com este projeto com o objetivo de
+automatizar essa função.
+
+### Tópicos
+- [Requisitos](#requisitos)
+- [Como executar o projeto](#como-executar-o-projeto)
+- [Acesso](#acesso)
 
 ## Requisitos
 - Node 23 ou acima
 - Angular CLI 19 ou acima
 
-## Iniciar servidor
+## Como executar o projeto
 Antes de tudo, execute o comando abaixo para instalar as dependências necessárias:
 
 ```bash
