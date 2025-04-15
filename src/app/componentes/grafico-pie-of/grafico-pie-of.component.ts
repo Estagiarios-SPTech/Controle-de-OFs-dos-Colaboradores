@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
+import { OrdemFornecimentoService } from '../../services/ordem-fornecimento.service';
 
 @Component({
   selector: 'app-grafico-pie-of',
@@ -10,26 +11,51 @@ import ChartDataLabels from 'chartjs-plugin-datalabels';
 })
 export class GraficoPieOfComponent implements OnInit {
   chart: Chart | undefined;
+  ofService = inject(OrdemFornecimentoService)
+  ofPendente: number = 0;
+  ofIniciada: number = 0;
+  ofValidada: number = 0;
+
+  carregarPorStatus(status:string, status2:string, status3:string):void{
+    this.ofService.verificarQuantidadePorStatus(status)
+    .subscribe(retorno => {
+      this.ofPendente = retorno
+      this.ofService.verificarQuantidadePorStatus(status2)
+      .subscribe(retorno => {
+        this.ofIniciada = retorno
+        this.ofService.verificarQuantidadePorStatus(status3)
+        .subscribe(retorno => {
+        this.ofValidada = retorno
+        this.criarGrafico()
+      })
+      })
+    })
+   
+  }
 
   ngOnInit() {
-    const ctx = document.getElementById('chart-pie') as HTMLCanvasElement;
-
     GraficoPieOfComponent.constructor(); {
       // Register all required Chart.js components globally
       Chart.register(...registerables);
       Chart.register(ChartDataLabels);
     }
-
+    
+    this.carregarPorStatus("Pendente de Cadastramento", "Iniciada", "Validada");
+    
+  }
+  criarGrafico(){
+    const ctx = document.getElementById('chart-pie') as HTMLCanvasElement;
+  
     this.chart = new Chart(ctx, {
       type: 'pie',
       data: {
         labels: [
           'Pendente de Cadastramento',
-          'Validada',
-          'Iniciada'
+          'Iniciada',
+          'Validada'
         ],
         datasets: [{
-          data: [45, 20, 35],
+          data: [this.ofPendente, this.ofIniciada, this.ofValidada],
           backgroundColor: [
             '#6168EC',
             '#4d52bf',

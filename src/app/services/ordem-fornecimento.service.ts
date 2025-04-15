@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { OrdemFornecimento } from '../model/ordemFornecimento';
+import { OrdemFornecimentoMes } from '../model/ordemFornecimentoMes';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,11 @@ export class OrdemFornecimentoService {
 
   ordemFornecimentos: OrdemFornecimento[] = []
   ordemFornecimento: OrdemFornecimento = new OrdemFornecimento()
+  listaOrdemFornecimentoMes: OrdemFornecimentoMes[] = []
+
+  verificarQuantidadePorMes():Observable<OrdemFornecimentoMes[]>{
+    return this.http.get<OrdemFornecimentoMes[]>(this.url + "/quantidadePorMes")
+  }
 
   vericarLista():Observable<OrdemFornecimento[]>{
     return this.http.get<OrdemFornecimento[]>(this.url + "/listar");
@@ -22,6 +28,10 @@ export class OrdemFornecimentoService {
 
   verificarListaId(codigo:number):Observable<OrdemFornecimento>{
     return this.http.get<OrdemFornecimento>(this.url + "/listar/" + codigo);
+  }
+
+  verificarQuantidadePorStatus(status:string):Observable<number>{
+    return this.http.get<number>(this.url + "/contarPorStatus/" + status);
   }
 
   verificarCadastro(obj: OrdemFornecimento):Observable<OrdemFornecimento>{

@@ -1,6 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import Chart from 'chart.js/auto';
 import { UsuarioService} from '../../services/usuario.service';
+import { OrdemFornecimentoService } from '../../services/ordem-fornecimento.service';
 
 @Component({
   selector: 'app-grafico-empilhado',
@@ -10,6 +11,7 @@ import { UsuarioService} from '../../services/usuario.service';
 })
 export class GraficoEmpilhadoComponent implements OnInit {
   usuarioService = inject(UsuarioService)
+  ofService = inject(OrdemFornecimentoService)
   usuarios: any[] = [];
   quantidadeUsuarios: number = 0;
   chart: Chart | null = null;
@@ -26,6 +28,12 @@ export class GraficoEmpilhadoComponent implements OnInit {
       }
     );
   }
+
+  carregarOrdemFornecimento():void{
+    this.ofService.vericarLista()
+    .subscribe(retorno => this.ofService.ordemFornecimentos = retorno);
+  }
+
   criarGrafico(): void {
     const ctx = document.getElementById('myChart') as HTMLCanvasElement;
     
@@ -38,7 +46,7 @@ export class GraficoEmpilhadoComponent implements OnInit {
       data: {
         labels: ['Ordem de Serviço', 'Usuários'],
         datasets: [{
-          data: [20, this.quantidadeUsuarios], // Usando a quantidade de usuários aqui
+          data: [this.ofService.ordemFornecimentos.length, this.quantidadeUsuarios], // Usando a quantidade de usuários aqui
           backgroundColor: [
             '#FBBC04',
             '#8D34F9',
@@ -74,6 +82,7 @@ export class GraficoEmpilhadoComponent implements OnInit {
 
   ngOnInit() {
     this.carregarUsuarios();
+    this.carregarOrdemFornecimento();
   }
 }
   
