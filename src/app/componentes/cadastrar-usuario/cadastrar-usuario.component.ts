@@ -25,7 +25,6 @@ export class CadastrarUsuarioComponent {
   cargo = "";
   rt = "";
   manager = "";
-  //preciso fazer com que primeiro seja feito o cadastro do usuario, e assim que o cadastro for realizado ele cadastre logo em seguida no employee
 
   managers: User[] = [];
   rts: User[] = [];
@@ -69,19 +68,6 @@ export class CadastrarUsuarioComponent {
   user: User = new User();
   employee: Employee = new Employee();
 
-  // teste(texto: string): void {
-  //   console.log(texto);
-  // }
-onManagerSelect(managerName: string): void {
-  this.selectedManagerObj = this.managers.find(m => m.name === this.selectManager) || null;
-  this.selectManager = managerName;
-}
-
-onRtSelect(rtName: string): void {
-  this.selectedRtObj = this.rts.find(r => r.name === rtName) || null;
-  this.selectRt = rtName;
-}
-
   cadastrar(): void {
     this.usuarioService.signUp(this.user).subscribe({
       next: (usuarioCriado) => {
@@ -95,34 +81,27 @@ onRtSelect(rtName: string): void {
           if (this.selectRt) {
             this.employee.rt = { name: this.selectRt } as User;
           }
+          console.log("employee esta sendo enviado:", this.employee)
+  
+          this.employee.employee = usuarioCriado;
+          this.employee.status = "Disponivel";
+  
+            this.employeeService.cadastrarEmployee(this.employee).subscribe({
+              next: (employeeCriado) => {
+                console.log('Employee cadastrado com sucesso:', employeeCriado);
+                this.resetForm();
+              },
+              error: (error) => {
+                console.error('Erro ao cadastrar employee:', error);
+              }
+            
+            });
         }
-        console.log("employee esta sendo enviado:", this.employee)
-
-        this.employee.employee = usuarioCriado;
-        this.employee.status = "Disponivel";
-
-          this.employeeService.cadastrarEmployee(this.employee).subscribe({
-            next: (employeeCriado) => {
-              console.log('Employee cadastrado com sucesso:', employeeCriado);
-              this.resetForm();
-            },
-            error: (error) => {
-              console.error('Erro ao cadastrar employee:', error);
-            }
-          
-        });
       },
       error: (error) => {
         console.error('Erro ao cadastrar usuário:', error);
       }
     });
-     {
-          
-      // const rtSelecionado = this.rts.find(r => r.name === this.selectRt);
-      // if (rtSelecionado && rtSelecionado.id !== undefined) {
-      //   rtId = rtSelecionado.id;
-      // }    
-    }
   }
 
   private resetForm(): void {
