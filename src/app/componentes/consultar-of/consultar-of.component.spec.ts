@@ -6,7 +6,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { of } from 'rxjs';
 import { OrdemFornecimento } from '../../model/ordemFornecimento';
 
-fdescribe('ConsultarOFComponent', () => {
+describe('ConsultarOFComponent', () => {
   let component: ConsultarOFComponent;
   let fixture: ComponentFixture<ConsultarOFComponent>;
 
@@ -25,7 +25,7 @@ fdescribe('ConsultarOFComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('Deve carregar filtro', () =>{
+  it('Deve carregar filtro', () => {
     const event = {
       target: {
         value: 'texto de filtro'

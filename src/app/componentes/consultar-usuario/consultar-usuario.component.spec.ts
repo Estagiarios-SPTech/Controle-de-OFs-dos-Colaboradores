@@ -1,6 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ConsultarUsuarioComponent } from './consultar-usuario.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { provideHttpClient } from '@angular/common/http';
+import { User } from '../../model/User';
+import { of } from 'rxjs';
 
 describe('ConsultarUsuarioComponent', () => {
   let component: ConsultarUsuarioComponent;
@@ -8,7 +12,7 @@ describe('ConsultarUsuarioComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ConsultarUsuarioComponent]
+      providers: [provideHttpClient(), provideAnimationsAsync()]
     })
     .compileComponents();
 
@@ -20,4 +24,25 @@ describe('ConsultarUsuarioComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('Deve carregar filtro', () => {
+    const event = {
+      target: {
+        value: 'texto de filtro'
+      }
+    } as unknown as Event;
+
+    component.applyFilter(event)
+
+    expect(component.dataSource.filter).toBe('texto de filtro')
+  })
+
+  it('Deve carregar os usuários', () => {
+    var users: User[] = []
+    spyOn(component.usuarioService, 'select').and.returnValue(of(users))
+
+    component.ngOnInit()
+
+    expect(component.dataSource.data).toEqual(users)
+  })
 });
