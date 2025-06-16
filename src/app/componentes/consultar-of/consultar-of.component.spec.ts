@@ -26,12 +26,15 @@ describe('ConsultarOFComponent', () => {
   });
 
   it('Deve carregar filtro', () => {
+    var listaOrdemFornecimento: OrdemFornecimento[] = []
     const event = {
       target: {
         value: 'texto de filtro'
       }
     } as unknown as Event;
+    spyOn(component.ofService, 'vericarLista').and.returnValue(of(listaOrdemFornecimento))
 
+    component.listar()
     component.applyFilter(event)
 
     expect(component.dataSource.filter).toBe('texto de filtro')

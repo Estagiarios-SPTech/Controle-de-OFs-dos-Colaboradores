@@ -25,7 +25,7 @@ describe('GraficoEmpilhadoComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-
+  
   it('Deve carregar os usuários', () => {
     var users: User[] = []
     spyOn(component.usuarioService, "select").and.returnValue(of(users))
@@ -53,11 +53,6 @@ describe('GraficoEmpilhadoComponent', () => {
 
     expect(component.ofService.ordemFornecimentos).toEqual(ordemFornecimentos)
   })
-
-  // it('Deve destruir o chart existente para gerar um novo', () => {  
-
-  //   component.criarGrafico()
-  // })
 
   it('Deve carregar o ngOnInit', () => {
     spyOn(component, 'carregarUsuarios');
