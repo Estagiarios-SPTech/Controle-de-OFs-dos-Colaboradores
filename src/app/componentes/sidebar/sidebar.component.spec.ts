@@ -23,4 +23,16 @@ describe('SidebarComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('Deve retornar false ao verificar a condição da tela', () => {
+    (component as any)._mobileQuery = { 
+      matches: false,
+      addEventListener: jasmine.createSpy('addEventListener'),
+      removeEventListener: jasmine.createSpy('removeEventListener')
+    };
+
+    (component as any)._mobileQueryListener();
+
+    expect(component.isMobile()).toBe(false);
+  })
 });
