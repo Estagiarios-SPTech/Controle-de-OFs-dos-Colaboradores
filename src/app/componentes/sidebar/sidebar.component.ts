@@ -19,7 +19,7 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 export class SidebarComponent implements OnDestroy {
   protected readonly fillerNav = Array.from({length: 50}, (_, i) => `Nav Item ${i + 1}`);
 
-  protected readonly isMobile = signal(true);
+  readonly isMobile = signal(true);
 
   private readonly _mobileQuery: MediaQueryList;
   private readonly _mobileQueryListener: () => void;

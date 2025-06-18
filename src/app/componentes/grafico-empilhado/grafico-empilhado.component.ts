@@ -31,22 +31,20 @@ export class GraficoEmpilhadoComponent implements OnInit {
 
   carregarOrdemFornecimento():void{
     this.ofService.vericarLista()
-    .subscribe(retorno => this.ofService.ordemFornecimentos = retorno);
+    .subscribe(retorno => {
+      this.ofService.ordemFornecimentos = retorno,
+      console.log(this.ofService.ordemFornecimentos)});
   }
 
   criarGrafico(): void {
     const ctx = document.getElementById('myChart') as HTMLCanvasElement;
-    
-    if (this.chart) {
-      this.chart.destroy();
-    }
 
     this.chart = new Chart(ctx, {
       type: 'bar',
       data: {
         labels: ['Ordem de Serviço', 'Usuários'],
         datasets: [{
-          data: [this.ofService.ordemFornecimentos.length, this.quantidadeUsuarios], // Usando a quantidade de usuários aqui
+          data: [this.ofService.ordemFornecimentos.length, this.quantidadeUsuarios],
           backgroundColor: [
             '#FBBC04',
             '#8D34F9',
@@ -81,8 +79,8 @@ export class GraficoEmpilhadoComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.carregarUsuarios();
     this.carregarOrdemFornecimento();
+    this.carregarUsuarios();
   }
 }
   
