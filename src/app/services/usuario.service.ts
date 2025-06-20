@@ -8,11 +8,9 @@ import { User } from '../model/User';
 })
 
 export class UsuarioService {
-  private url = "http://localhost:8080/users"
+  private urlSpringBoot = "http://localhost:8080/users"
+  private urlQuarkus = "http://localhost:8081/user"
   colaboradores:User[] = []
-
-  private urlUser:string = 'http://localhost:8080/users';
-  
   
   constructor(private http:HttpClient) {}
        
@@ -23,7 +21,7 @@ export class UsuarioService {
   }
 
   verificarUsuario():Observable<User[]>{
-    return this.http.get<User[]>(this.url + "/listarNomes");
+    return this.http.get<User[]>(this.urlSpringBoot + "/listarNomes");
   }
 
   listarNomes():void{
@@ -33,21 +31,21 @@ export class UsuarioService {
   
   usuarios:User[] = [];
   select():Observable<User[]>{
-    return this.http.get<User[]>(this.urlUser + "/findAll");
+    return this.http.get<User[]>(this.urlSpringBoot + "/findAll");
   }
 
   managers:User[] = [];
   selectManager():Observable<User[]>{
-    return this.http.get<User[]>(this.urlUser + "/Managers");
+    return this.http.get<User[]>(this.urlSpringBoot + "/Managers");
   }
   
   rts:User[] = [];
   selectRt():Observable<User[]>{
-    return this.http.get<User[]>(this.urlUser + "/RTs");
+    return this.http.get<User[]>(this.urlSpringBoot + "/RTs");
   }
 
   signUp(obj:User):Observable<User>{
-    return this.http.post<User>(this.urlUser + "/new", obj);
+    return this.http.post<User>(this.urlQuarkus + "/cadastrar", obj);
   }
 
 }

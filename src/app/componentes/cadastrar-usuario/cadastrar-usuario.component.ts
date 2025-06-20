@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -11,6 +11,8 @@ import { User } from '../../model/User';
 import { UsuarioService } from '../../services/usuario.service';
 import { Employee } from '../../model/Employee';
 import { EmployeeService } from '../../services/employee.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ModalUsuarioCadastradoComponent } from '../modal-usuario-cadastrado/modal-usuario-cadastrado.component';
 
 @Component({
   selector: 'app-cadastrar-usuario',
@@ -23,6 +25,7 @@ export class CadastrarUsuarioComponent {
   nome = "";
   email = "";
   cargo = "";
+  senha = "";
   rt = "";
   manager = "";
 
@@ -69,6 +72,8 @@ export class CadastrarUsuarioComponent {
   employee: Employee = new Employee();
 
   cadastrar(): void {
+    this.user.password = crypto.randomUUID().substring(0, 7);
+    console.log(this.user)
     this.usuarioService.signUp(this.user).subscribe({
       next: (usuarioCriado) => {
         console.log("cadastro feito com sucesso" + this.user);
@@ -83,20 +88,20 @@ export class CadastrarUsuarioComponent {
           }
           console.log("employee esta sendo enviado:", this.employee)
   
-          this.employee.employee = usuarioCriado;
+          this.employee.user = usuarioCriado;
           this.employee.status = "Disponivel";
   
             this.employeeService.cadastrarEmployee(this.employee).subscribe({
               next: (employeeCriado) => {
                 console.log('Employee cadastrado com sucesso:', employeeCriado);
-                this.resetForm();
               },
               error: (error) => {
                 console.error('Erro ao cadastrar employee:', error);
               }
-            
+              
             });
-        }
+          }
+          this.abrirModal(usuarioCriado);
       },
       error: (error) => {
         console.error('Erro ao cadastrar usuário:', error);
@@ -104,14 +109,27 @@ export class CadastrarUsuarioComponent {
     });
   }
 
-  private resetForm(): void {
-    this.nome = '';
+  resetForm(): void {
+    console.log("Fui chamado")
+    this.user.name = '';
     this.email = '';
     this.cargo = '';
     this.rt = '';
     this.manager = '';
     this.selectManager = "";
     this.selectRt = "";
+  }
+
+  readonly dialog = inject(MatDialog);
+
+  abrirModal(usuarioCriado: User){
+    this.dialog.open(ModalUsuarioCadastradoComponent,{
+      width: '600px',
+      data: {usuarioCriado}
+    });
+
+    this.dialog.afterAllClosed.subscribe(() => this.resetForm())
+  
   }
 }
 

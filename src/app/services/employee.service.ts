@@ -9,7 +9,8 @@ import { Employee } from '../model/Employee';
 })
 
 export class EmployeeService {
-    private urlEmployee: string = 'http://localhost:8080/employees';
+    private urlSpringBoot: string = 'http://localhost:8080/employees';
+    private urlQuarkus: string = 'http://localhost:8081/collaborator';
 
     constructor(private http: HttpClient) {
 
@@ -23,10 +24,10 @@ export class EmployeeService {
 
     employees: Employee[] = [];
     select(): Observable<Employee[]> {
-        return this.http.get<Employee[]>(this.urlEmployee + "/findAll");
+        return this.http.get<Employee[]>(this.urlSpringBoot + "/findAll");
     }
 
     cadastrarEmployee(obj:Employee):Observable<Employee>{
-        return this.http.post<Employee>(this.urlEmployee + "/new", obj);
+        return this.http.post<Employee>(this.urlQuarkus + "/cadastrar", obj);
       }
 }

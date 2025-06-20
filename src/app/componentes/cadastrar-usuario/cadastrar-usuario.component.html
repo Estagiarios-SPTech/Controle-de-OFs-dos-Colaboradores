@@ -20,8 +20,8 @@
                 <mat-label>Cargo</mat-label>
                 <mat-select required [(ngModel)]="user.role" name="cargo" #inputRole="ngModel">
                     <mat-option value="Colaborador">Colaborador</mat-option>
-                    <mat-option value="rt">Responsável Técnico</mat-option>
-                    <mat-option value="manager">Gerente</mat-option>
+                    <mat-option value="RT">Responsável Técnico</mat-option>
+                    <mat-option value="Gerente">Gerente</mat-option>
                 </mat-select>
                 @if (inputRole.hasError('required')) {
                     <mat-error>Este campo precisa estar <strong>preenchido</strong></mat-error>

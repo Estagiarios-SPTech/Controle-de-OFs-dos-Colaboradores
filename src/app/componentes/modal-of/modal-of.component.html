@@ -4,7 +4,7 @@
   <p>{{ofService.ordemFornecimento.codigo}}</p>
   <h3>Colaborador</h3>
   <mat-form-field class="example-full-width">
-    <mat-select [(ngModel)]="ofService.ordemFornecimento.collaborator.employee.name" name="status" required>
+    <mat-select [(ngModel)]="ofService.ordemFornecimento.collaborator.user.name" name="status" required>
         @for (colaborador of usuarioService.colaboradores; track colaborador) {
             <mat-option [value]="colaborador">{{colaborador}}</mat-option>
         }
