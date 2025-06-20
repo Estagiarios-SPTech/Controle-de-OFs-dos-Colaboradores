@@ -27,7 +27,7 @@ export class OrdemFornecimentoService {
   }
 
   verificarListaId(codigo:number):Observable<OrdemFornecimento>{
-    return this.http.get<OrdemFornecimento>(this.url + "/listar/" + codigo);
+    return this.http.get<OrdemFornecimento>(this.url + "/listarPorCodigo/" + codigo);
   }
 
   verificarQuantidadePorStatus(status:string):Observable<number>{
