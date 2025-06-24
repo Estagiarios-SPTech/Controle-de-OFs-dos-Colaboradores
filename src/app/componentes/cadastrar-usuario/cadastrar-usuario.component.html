@@ -1,56 +1,59 @@
-<form>
+<form [formGroup]="user" #formDirective="ngForm" (ngSubmit)="cadastrar(formDirective)">
     <div id="preenchimento">
         <div class="campos">
             <img id="iconeUsuarioMobile" src="iconeUsuario.png" alt="">
             <mat-form-field appearance="outline">
                 <mat-label>Nome</mat-label>
-                <input name="name" [(ngModel)]="user.name" matInput required #nameInput="ngModel">
-                @if (nameInput.hasError('required')) {
+                <input name="name" formControlName="name" matInput>
+                @if (user.get('name')?.hasError('required')) {
                     <mat-error>Este campo precisa estar <strong>preenchido</strong></mat-error>
                 }
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>E-mail</mat-label>
-                <input name="email" [(ngModel)]="user.email" matInput required #emailInput="ngModel">
-                @if (emailInput.hasError('required')) {
+                <input name="email" formControlName="email" matInput>
+                @if (user.get('email')?.hasError('required')) {
                     <mat-error>Este campo precisa estar <strong>preenchido</strong></mat-error>
+                }
+                @if (user.get('email')?.hasError('email')) {
+                    <mat-error>O e-mail precisa ser <strong>válido</strong></mat-error>
                 }
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>Cargo</mat-label>
-                <mat-select required [(ngModel)]="user.role" name="cargo" #inputRole="ngModel">
+                <mat-select formControlName="role" name="cargo">
                     <mat-option value="Colaborador">Colaborador</mat-option>
                     <mat-option value="RT">Responsável Técnico</mat-option>
                     <mat-option value="Gerente">Gerente</mat-option>
                 </mat-select>
-                @if (inputRole.hasError('required')) {
+                @if (user.get('role')?.hasError('required')) {
                     <mat-error>Este campo precisa estar <strong>preenchido</strong></mat-error>
                 }
             </mat-form-field>
         </div>
-        <div class="campos" *ngIf="user.role == 'Colaborador'">
+        <div class="campos" *ngIf="user.value.role == 'Colaborador'">
 
             <mat-form-field appearance="outline">
                 <mat-label>Gerente</mat-label>
-                <mat-select required [(ngModel)]="selectManager" name="manager">               
+                <mat-select required formControlName="selectManager" name="manager">               
                        @for (manager of managers; track manager) {
                         <mat-option [value]="manager.name"> {{ manager.name }} </mat-option>
                        }    
                 </mat-select>
-                <mat-error *ngIf="!selectManager">Este campo precisa estar <strong>preenchido</strong></mat-error>            
+                <mat-error *ngIf="!user.value.selectManager">Este campo precisa estar <strong>preenchido</strong></mat-error>            
             </mat-form-field>
     
             <mat-form-field appearance="outline">
                 <mat-label>Responsável Técnico</mat-label>
-                <mat-select required [(ngModel)]="selectRt" name="rt">
+                <mat-select required formControlName="selectRt" name="rt">
                     @for (rt of rts; track rt) {
                         <mat-option [value]="rt.name"> {{ rt.name }} </mat-option>
                     }
                 </mat-select>
-                <mat-error *ngIf="!selectRt">Este campo precisa estar <strong>preenchido</strong></mat-error>   
+                <mat-error *ngIf="!!user.value.selectRt">Este campo precisa estar <strong>preenchido</strong></mat-error>   
             </mat-form-field>
     </div>
     <img id="iconeUsuario" src="iconeUsuario.png" alt="">
     </div>
-    <button (click)="cadastrar()" mat-flat-button>Cadastrar</button>
+    <button type="submit" mat-flat-button>Cadastrar</button>
 </form>

@@ -29,6 +29,7 @@ export class CadastrarOFComponent {
   }
 
   cadastrar(){
+    console.log(this.ordemFornecimento)
     this.ofService.verificarCadastro(this.ordemFornecimento)
     .subscribe(() => this.realizouCadastro.emit())
   }

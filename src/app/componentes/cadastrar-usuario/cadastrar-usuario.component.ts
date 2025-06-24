@@ -5,7 +5,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroupDirective, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { User } from '../../model/User';
 import { UsuarioService } from '../../services/usuario.service';
@@ -16,19 +16,12 @@ import { ModalUsuarioCadastradoComponent } from '../modal-usuario-cadastrado/mod
 
 @Component({
   selector: 'app-cadastrar-usuario',
-  imports: [MatFormFieldModule, MatInputModule, MatSelectModule, MatButtonModule, MatDividerModule, MatIconModule, FormsModule, CommonModule],
+  imports: [MatFormFieldModule, MatInputModule, MatSelectModule, MatButtonModule, MatDividerModule, MatIconModule, FormsModule, CommonModule, ReactiveFormsModule],
   templateUrl: './cadastrar-usuario.component.html',
   styleUrl: './cadastrar-usuario.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CadastrarUsuarioComponent {
-  nome = "";
-  email = "";
-  cargo = "";
-  senha = "";
-  rt = "";
-  manager = "";
-
   managers: User[] = [];
   rts: User[] = [];
 
@@ -68,56 +61,65 @@ export class CadastrarUsuarioComponent {
 
   }
 
-  user: User = new User();
+  fb = inject(FormBuilder)
+
+  user = this.fb.group({
+    name: ['', Validators.required],
+    email: ['', [Validators.required, Validators.email]],
+    role: ['', Validators.required],
+    password: '',
+    selectManager: '',
+    selectRt: '',
+  })
+
   employee: Employee = new Employee();
 
-  cadastrar(): void {
-    this.user.password = crypto.randomUUID().substring(0, 7);
+  cadastrar(formulario: FormGroupDirective): void {
+    this.user.value.password = crypto.randomUUID().substring(0, 7);
     console.log(this.user)
-    this.usuarioService.signUp(this.user).subscribe({
-      next: (usuarioCriado) => {
-        console.log("cadastro feito com sucesso" + this.user);
-        
-        if (this.user.role === 'Colaborador') {
-          if(this.selectManager){
-            this.employee.manager = {name: this.selectManager} as User;
-          }
-
-          if (this.selectRt) {
-            this.employee.rt = { name: this.selectRt } as User;
-          }
-          console.log("employee esta sendo enviado:", this.employee)
-  
-          this.employee.user = usuarioCriado;
-          this.employee.status = "Disponivel";
-  
-            this.employeeService.cadastrarEmployee(this.employee).subscribe({
-              next: (employeeCriado) => {
-                console.log('Employee cadastrado com sucesso:', employeeCriado);
-              },
-              error: (error) => {
-                console.error('Erro ao cadastrar employee:', error);
-              }
-              
-            });
-          }
-          this.abrirModal(usuarioCriado);
-      },
-      error: (error) => {
-        console.error('Erro ao cadastrar usuário:', error);
+    if (this.user.value.role != 'Colaborador'){
+      this.usuarioService.signUp(this.user.value as User).subscribe({
+        next: (usuarioCriado) => {
+          console.log("cadastro feito com sucesso" + usuarioCriado);
+          this.abrirModal(this.user.value as User);
+          this.resetForm(formulario)
+        },
+        error: (error) => {
+          console.error('Erro ao cadastrar usuário:', error);
+        }
+      });
+    }
+    else {
+      if(this.selectManager){
+        this.employee.manager = {name: this.selectManager} as User;
       }
-    });
-  }
 
-  resetForm(): void {
-    console.log("Fui chamado")
-    this.user.name = '';
-    this.email = '';
-    this.cargo = '';
-    this.rt = '';
-    this.manager = '';
-    this.selectManager = "";
-    this.selectRt = "";
+      if (this.selectRt) {
+        this.employee.rt = { name: this.selectRt } as User;
+      }
+      console.log("employee esta sendo enviado:", this.employee)
+
+      this.employee.user = this.user.value as User;
+      this.employee.status = "Disponivel";
+      this.employee.manager.name = this.user.value.selectManager as string
+      this.employee.rt.name = this.user.value.selectRt as string
+
+        this.employeeService.cadastrarEmployee(this.employee).subscribe({
+          next: (employeeCriado) => {
+            console.log('Employee cadastrado com sucesso:', employeeCriado);
+            this.abrirModal(this.user.value as User);
+            this.resetForm(formulario)
+          },
+          error: (error) => {
+            console.error('Erro ao cadastrar employee:', error);
+          }
+          
+        });
+      }
+  }
+ 
+  resetForm(formulario: FormGroupDirective): void {
+    formulario.resetForm();
   }
 
   readonly dialog = inject(MatDialog);
@@ -128,7 +130,7 @@ export class CadastrarUsuarioComponent {
       data: {usuarioCriado}
     });
 
-    this.dialog.afterAllClosed.subscribe(() => this.resetForm())
+    this.dialog.afterAllClosed.subscribe()
   
   }
 }
