@@ -68,8 +68,8 @@ export class CadastrarUsuarioComponent {
     email: ['', [Validators.required, Validators.email]],
     role: ['', Validators.required],
     password: '',
-    selectManager: '',
-    selectRt: '',
+    selectManager: ['', Validators.required],
+    selectRt: ['', Validators.required],
   })
 
   employee: Employee = new Employee();
