@@ -21,6 +21,7 @@ export class SnackbarService {
     this._snackBar.open(mensagem, 'Fechar', {
       horizontalPosition: this.horizontalPosition,
       verticalPosition: this.verticalPosition,
+      duration: 5000,
       panelClass: ['snackbar']
     });
   }
