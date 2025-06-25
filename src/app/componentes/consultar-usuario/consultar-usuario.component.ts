@@ -4,7 +4,7 @@ import {MatSort, MatSortModule} from '@angular/material/sort';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import { UsuarioService} from '../../services/usuario.service';
+import { UsuarioService} from '../../services/usuario/usuario.service';
 import { User } from '../../model/User';
 
 @Component({

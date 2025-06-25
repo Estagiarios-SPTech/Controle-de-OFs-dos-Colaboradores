@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { GraficoBarraOfComponent } from './grafico-barra-of.component';
-import { OrdemFornecimentoService } from '../services/ordem-fornecimento.service';
+import { OrdemFornecimentoService } from '../services/ordem-fornecimento/ordem-fornecimento.service';
 import { of } from 'rxjs';
 import { Chart, registerables } from 'chart.js';
 

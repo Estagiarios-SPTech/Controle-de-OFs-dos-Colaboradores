@@ -4,7 +4,7 @@ import {MatSort, MatSortModule} from '@angular/material/sort';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import { OrdemFornecimentoService } from '../../services/ordem-fornecimento.service';
+import { OrdemFornecimentoService } from '../../services/ordem-fornecimento/ordem-fornecimento.service';
 import { OrdemFornecimento } from '../../model/ordemFornecimento';
 import { CommonModule } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';

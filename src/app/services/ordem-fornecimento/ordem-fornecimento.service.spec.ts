@@ -1,9 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { OrdemFornecimentoService } from './ordem-fornecimento.service';
-import { OrdemFornecimento } from '../model/ordemFornecimento';
-import { OrdemFornecimentoMes } from '../model/ordemFornecimentoMes';
-import { Employee } from '../model/Employee';
+import { OrdemFornecimentoService } from '../ordem-fornecimento.service';
+import { OrdemFornecimento } from '../../model/ordemFornecimento';
+import { OrdemFornecimentoMes } from '../../model/ordemFornecimentoMes';
+import { Employee } from '../../model/Employee';
 
 describe('OrdemFornecimentoService', () => {
   let service: OrdemFornecimentoService;

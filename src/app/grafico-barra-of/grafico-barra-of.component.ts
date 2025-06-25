@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
-import { OrdemFornecimentoService } from '../services/ordem-fornecimento.service';
+import { OrdemFornecimentoService } from '../services/ordem-fornecimento/ordem-fornecimento.service';
 
 @Component({
   selector: 'app-grafico-barra-of',

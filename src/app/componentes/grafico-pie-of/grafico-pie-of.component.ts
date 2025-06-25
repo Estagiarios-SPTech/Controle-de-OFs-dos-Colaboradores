@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
-import { OrdemFornecimentoService } from '../../services/ordem-fornecimento.service';
+import { OrdemFornecimentoService } from '../../services/ordem-fornecimento/ordem-fornecimento.service';
 
 @Component({
   selector: 'app-grafico-pie-of',

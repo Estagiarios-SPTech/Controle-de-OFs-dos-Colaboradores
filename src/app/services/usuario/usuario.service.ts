@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { User } from '../model/User';
+import { User } from '../../model/User';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +14,10 @@ export class UsuarioService {
   
   constructor(private http:HttpClient) {}
        
+  verificarEmailExistente(email: string):Observable<boolean>{
+    return this.http.get<boolean>(this.urlQuarkus + "/verificarEmail/" + email);
+  }
+
   loadUsers(): void {
     this.select().subscribe(data => {
         this.usuarios = data;

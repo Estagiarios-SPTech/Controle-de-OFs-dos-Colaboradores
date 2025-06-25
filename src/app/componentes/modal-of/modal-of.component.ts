@@ -6,13 +6,13 @@ import {
   MatDialogContent,
   MatDialogTitle,
 } from '@angular/material/dialog';
-import { OrdemFornecimentoService } from '../../services/ordem-fornecimento.service';
+import { OrdemFornecimentoService } from '../../services/ordem-fornecimento/ordem-fornecimento.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { UsuarioService } from '../../services/usuario.service';
+import { UsuarioService } from '../../services/usuario/usuario.service';
 import { OrdemFornecimento } from '../../model/ordemFornecimento';
 
 @Component({

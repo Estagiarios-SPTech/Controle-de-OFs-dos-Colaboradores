@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import Chart from 'chart.js/auto';
-import { UsuarioService} from '../../services/usuario.service';
-import { OrdemFornecimentoService } from '../../services/ordem-fornecimento.service';
+import { UsuarioService} from '../../services/usuario/usuario.service';
+import { OrdemFornecimentoService } from '../../services/ordem-fornecimento/ordem-fornecimento.service';
 
 @Component({
   selector: 'app-grafico-empilhado',
