@@ -1,10 +1,19 @@
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+import { ApplicationConfig, importProvidersFrom, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { provideHttpClient } from '@angular/common/http';
 import { routes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideAnimationsAsync(), provideAnimationsAsync(), provideHttpClient()
+  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideAnimationsAsync(),
+              provideAnimationsAsync(), provideHttpClient(), JwtHelperService,
+    importProvidersFrom(
+      JwtModule.forRoot({
+        config: {
+          tokenGetter: () => localStorage.getItem('token'),
+          allowedDomains: ['localhost:8081']
+        }
+      }))
   ]
 };
