@@ -28,6 +28,12 @@
     font-family: Helvetica, sans-serif;
 }
 
+#meuUsuario{
+    text-decoration: none;
+    color: black;
+    display: flex;
+}
+
 .tittle {
     color: #160E58;
     font-size: 2vw;
