@@ -1,10 +1,10 @@
-<form>
+<form [formGroup]="usuarioAtual" (ngSubmit)="atualizarDados()">
     <div id="conteudo">
         <div id="fotoNomeUsuario">
             <img id="iconeUsuario" src="iconeUsuario.png" alt="">
             <mat-form-field appearance="outline">
                 <mat-label>Nome</mat-label>
-                <input readonly="{{naoPodeEditar}}" name="name" matInput>
+                <input formControlName="name" readonly="{{naoPodeEditar}}" name="name" matInput>
                 <!-- @if (user.get('name')?.hasError('required')) {
                     <mat-error>Este campo precisa estar <strong>preenchido</strong></mat-error>
                 } -->
@@ -13,11 +13,11 @@
         </div>
         <mat-form-field appearance="outline">
             <mat-label>Cargo</mat-label>
-            <input readonly name="cargo" matInput>
+            <input formControlName="role" readonly name="cargo" matInput>
         </mat-form-field>
         <mat-form-field appearance="outline">
             <mat-label>E-mail</mat-label>
-            <input readonly="{{naoPodeEditar}}" name="email" matInput>
+            <input formControlName="email" readonly="{{naoPodeEditar}}" name="email" matInput>
             <!-- @if (user.get('email')?.hasError('required')) {
                 <mat-error>Este campo precisa estar <strong>preenchido</strong></mat-error>
             }
@@ -27,10 +27,10 @@
         </mat-form-field>
         <mat-form-field appearance="outline">
             <mat-label>Senha</mat-label>
-            <input readonly="{{naoPodeEditar}}" name="senha" matInput>
+            <input [type]="mostrarSenha ? 'text' : 'password'" formControlName="password" readonly="{{naoPodeEditar}}" name="senha" matInput>
         </mat-form-field>
         <div id="botoes" *ngIf="naoPodeEditar == false">
-            <button (click)="naoPermitirEdicao()" type="reset" mat-flat-button>Cancelar</button>
+            <a (click)="naoPermitirEdicao()" mat-flat-button>Cancelar</a>
             <button type="submit" mat-flat-button>Salvar</button>
         </div>
     </div>

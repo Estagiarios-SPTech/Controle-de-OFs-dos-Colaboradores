@@ -30,6 +30,10 @@ export class AuthService {
     return token ? this.jwtHelper.decodeToken(token) : null;
   }
 
+  getId(): string | null {
+    return this.getDecodedToken()?.id;
+  }
+
   getEmail(): string | null {
     return this.getDecodedToken()?.email;
   }
@@ -40,6 +44,10 @@ export class AuthService {
 
   getRole(): string | null {
     return this.getDecodedToken()?.role;
+  }
+
+  getPassword(): string | null {
+    return this.getDecodedToken()?.password;
   }
 
   login(credentials: { email: string; password: string }): Observable<string> {

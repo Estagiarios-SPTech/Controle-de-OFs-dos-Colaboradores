@@ -27,11 +27,8 @@
           </mat-form-field>
           <span>Senha</span>
           <mat-form-field class="example-full-width">
-            <input matInput placeholder="Senha" [formControl]="passwordFormControl" [errorStateMatcher]="matcher">
+            <input type="password" matInput placeholder="Senha" [formControl]="passwordFormControl" [errorStateMatcher]="matcher">
             <mat-hint></mat-hint>
-            <mat-error *ngIf="passwordFormControl.hasError('pattern') && !passwordFormControl.hasError('required')">
-              A senha precisa conter 8 caracteres minusculo e maiusculo, 1 número e 1 especial.
-            </mat-error>
             <mat-error *ngIf="passwordFormControl.hasError('required')">
               A senha é <strong>obrigatória</strong>.
             </mat-error>

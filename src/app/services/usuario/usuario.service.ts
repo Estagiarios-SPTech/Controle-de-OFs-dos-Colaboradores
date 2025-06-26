@@ -14,7 +14,7 @@ export class UsuarioService {
   private urlQuarkus = "http://localhost:8081/user"
   colaboradores:User[] = []
   
-  constructor(private http:HttpClient,  private jwtHelper: JwtHelperService) {}
+  constructor(private http:HttpClient) {}
        
   verificarEmailExistente(email: string):Observable<boolean>{
     return this.http.get<boolean>(this.urlQuarkus + "/verificarEmail/" + email);
@@ -58,5 +58,7 @@ export class UsuarioService {
     return this.http.post<any>(`${this.urlQuarkus}/login`, credentials);
   }
 
-
+  alterarDados(obj:User):Observable<User>{
+    return this.http.put<User>(this.urlSpringBoot + "/edit", obj)
+  }
 }
