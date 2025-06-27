@@ -30,7 +30,7 @@ export class AuthService {
     return token ? this.jwtHelper.decodeToken(token) : null;
   }
 
-  getId(): string | null {
+  getId(): number | null {
     return this.getDecodedToken()?.id;
   }
 

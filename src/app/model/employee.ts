@@ -6,6 +6,4 @@ export class Employee {
     rt: User = new User;  
     manager: User = new User;
     status: string = "Disponivel";
-
-
 }

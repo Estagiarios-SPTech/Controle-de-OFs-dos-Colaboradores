@@ -29,5 +29,10 @@ export class EmployeeService {
 
     cadastrarEmployee(obj:Employee):Observable<Employee>{
         return this.http.post<Employee>(this.urlQuarkus + "/cadastrar", obj);
-      }
+    }
+
+    acharColaboradoresPorRt(id:number):Observable<Employee[]>{
+        return this.http.get<Employee[]>(this.urlQuarkus + "/employees/" + id);
+    }
+
 }

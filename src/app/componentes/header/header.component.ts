@@ -20,9 +20,6 @@ export class HeaderComponent {
   ngOnInit() {
     this.user = this.authService.getNome() || 'Erro';
     
-  //  console.log('Email:', this.authService.getEmail());
-  //  console.log('Nome:', this.authService.getNome());
-  //  console.log('Role:', this.authService.getRole()); 
   }
 
 }

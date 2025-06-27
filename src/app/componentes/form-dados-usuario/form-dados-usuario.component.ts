@@ -39,7 +39,7 @@ export class FormDadosUsuarioComponent {
   fb = inject(FormBuilder)
   usuarioAtual = this.fb.group(
     {
-      id: '',
+      id: 0,
       name: '',
       role: '',
       email: '',
@@ -47,16 +47,28 @@ export class FormDadosUsuarioComponent {
     }
   )
 
+  credenciais = {
+    email: '',
+    password: ''
+  }
+
   recuperarDados(){
     this.usuarioAtual.get('id')?.setValue(this.auth.getId())
     this.usuarioAtual.get('name')?.setValue(this.auth.getNome())
     this.usuarioAtual.get('role')?.setValue(this.auth.getRole())
     this.usuarioAtual.get('email')?.setValue(this.auth.getEmail())
     this.usuarioAtual.get('password')?.setValue(this.auth.getPassword())
+    this.credenciais.email = this.usuarioAtual.value.email as string
+    this.credenciais.password = this.usuarioAtual.value.password as string
   }
 
   atualizarDados(){
-    console.log("Ola")
-    this.userService.alterarDados(this.usuarioAtual.value as User).subscribe()
+    this.userService.alterarDados(this.usuarioAtual.value as User).subscribe(
+      retorno => {
+        this.auth.login(this.credenciais).subscribe(
+            retorno => window.location.reload()
+        )
+      }
+    )
   }
 }
