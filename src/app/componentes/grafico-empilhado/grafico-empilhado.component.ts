@@ -53,6 +53,7 @@ export class GraficoEmpilhadoComponent implements OnInit {
       },
       options: {
         indexAxis: 'y',
+        responsive: true,
         maintainAspectRatio: false,
         scales: {
           y: {

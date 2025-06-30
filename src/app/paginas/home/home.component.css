@@ -10,8 +10,8 @@
     padding-bottom: 10px;
 }
 
-app-consultar-usuario, app-grafico-empilhado{
-    width: 40%;
+app-grafico-empilhado{
+    width: 100%;
 }
 
 #secaoGraficos{

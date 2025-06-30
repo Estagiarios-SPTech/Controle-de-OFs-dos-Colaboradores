@@ -11,6 +11,10 @@
     background-color: #bdbdbd;
 }
 
+mat-card{
+    width: 30vw;
+}
+
 mat-card-title-group{
     flex-direction: row-reverse;
     align-items: center;
