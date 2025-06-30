@@ -78,6 +78,9 @@ export class CadastrarUsuarioComponent {
   snackbarService = inject(SnackbarService)
 
   cadastrar(formulario: FormGroupDirective): void {
+    if(this.user.invalid){
+      return;
+    }
     this.usuarioService.verificarEmailExistente(this.user.value.email as string).subscribe(
       emailEncontrado => {
         if(emailEncontrado == true){

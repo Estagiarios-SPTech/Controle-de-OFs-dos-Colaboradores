@@ -19,7 +19,7 @@ import { ModalOfComponent } from '../modal-of/modal-of.component';
 })
 export class ConsultarOFComponent{
   ofService = inject(OrdemFornecimentoService)
-  displayedColumns: string[] = ['codigo', 'collaborator', 'description', 'status', 'created_at', 'updated_at', 'acao'];
+  displayedColumns: string[] = ['codigo', 'employee', 'description', 'status', 'created_at', 'updated_at', 'acao'];
   dataSource: MatTableDataSource<OrdemFornecimento> = new MatTableDataSource;
   
   @ViewChild(MatPaginator) paginator: MatPaginator = new MatPaginator();
@@ -44,7 +44,6 @@ export class ConsultarOFComponent{
       this.dataSource = new MatTableDataSource(this.ofService.ordemFornecimentos);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-      this.dataSource.sort.sort({id: "codigo", start: "desc", disableClear: true })
     })
   }
 
