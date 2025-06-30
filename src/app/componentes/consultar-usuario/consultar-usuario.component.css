@@ -1,29 +1,16 @@
-div{
-  width: 100%;
+#corpoFiltro{
   background-color: white;
   padding: 10px;
-}
-
-.mat-elevation-z8{
-  width: 95%;
-  overflow: auto;
-}
-
-table {
-  width: 100%;
-}
-
-.mat-mdc-form-field {
-  font-size: 14px;
-  width: 100%;
+  border: 1px solid rgb(150, 150, 150);
+  border-radius: 10px;
+  width: 800px;
 }
 
 #headerRow{
   background-color: #c0c0c0;
 }
 
-td, th {
-  width: 25%;
-  background-color: #E8E3E3;
+mat-form-field{
+    width: 100%;
 }
   

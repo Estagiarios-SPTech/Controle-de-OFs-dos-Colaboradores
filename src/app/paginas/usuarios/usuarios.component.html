@@ -1,5 +1,6 @@
 <div>
     <h1>Usuários</h1>
     <app-cadastrar-usuario></app-cadastrar-usuario>
-    <app-colaboradores></app-colaboradores>
+    <app-colaboradores *ngIf="auth.getRole() == 'RT'"></app-colaboradores>
+    <app-consultar-usuario *ngIf="auth.getRole() == 'Admin'"></app-consultar-usuario>
 </div>

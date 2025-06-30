@@ -11,7 +11,8 @@ h1{
     width: 98%;
 }
 
-app-cadastrar-usuario, app-colaboradores{
+app-cadastrar-usuario, app-colaboradores,
+app-consultar-usuario{
     display: flex;
     justify-content: center;
     padding-bottom: 2%;
