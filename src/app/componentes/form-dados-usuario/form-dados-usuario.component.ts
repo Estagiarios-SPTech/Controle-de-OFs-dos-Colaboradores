@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -33,17 +33,17 @@ export class FormDadosUsuarioComponent {
   naoPermitirEdicao(){
     this.mostrarSenha = false
     this.naoPodeEditar = true
-    this.recuperarDados()
+    window.location.reload()
   }
 
   fb = inject(FormBuilder)
   usuarioAtual = this.fb.group(
     {
       id: 0,
-      name: '',
+      name: ['', Validators.required],
       role: '',
-      email: '',
-      password: ''
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(12)]]
     }
   )
 
@@ -58,17 +58,19 @@ export class FormDadosUsuarioComponent {
     this.usuarioAtual.get('role')?.setValue(this.auth.getRole())
     this.usuarioAtual.get('email')?.setValue(this.auth.getEmail())
     this.usuarioAtual.get('password')?.setValue(this.auth.getPassword())
-    this.credenciais.email = this.usuarioAtual.value.email as string
-    this.credenciais.password = this.usuarioAtual.value.password as string
   }
 
   atualizarDados(){
-    this.userService.alterarDados(this.usuarioAtual.value as User).subscribe(
-      retorno => {
-        this.auth.login(this.credenciais).subscribe(
-            retorno => window.location.reload()
-        )
-      }
-    )
+    if(this.usuarioAtual.valid){
+      this.userService.alterarDados(this.usuarioAtual.value as User).subscribe(
+        retorno => {
+          this.credenciais.email = this.usuarioAtual.value.email as string
+          this.credenciais.password = this.usuarioAtual.value.password as string
+          this.auth.login(this.credenciais).subscribe(
+              retorno => window.location.reload()
+          )
+        }
+      )
+    }
   }
 }
