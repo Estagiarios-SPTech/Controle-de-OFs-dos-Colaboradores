@@ -6,7 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { AuthService } from '../../services/auth/auth.service';
 import { UsuarioService } from '../../services/usuario/usuario.service';
-import { User } from '../../model/User';
+import { User } from '../../model/user';
 
 @Component({
   selector: 'app-form-dados-usuario',

@@ -22,8 +22,8 @@ export class OrdemFornecimentoService {
     return this.http.get<OrdemFornecimentoMes[]>(this.url + "/quantidadePorMes")
   }
 
-  vericarLista():Observable<OrdemFornecimento[]>{
-    return this.http.get<OrdemFornecimento[]>(this.url + "/listar");
+  vericarLista(id:number):Observable<OrdemFornecimento[]>{
+    return this.http.get<OrdemFornecimento[]>(this.url + "/listar/" + id);
   }
 
   verificarListaId(codigo:number):Observable<OrdemFornecimento>{

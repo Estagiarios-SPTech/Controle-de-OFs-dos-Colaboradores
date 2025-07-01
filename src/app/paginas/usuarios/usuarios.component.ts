@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { CadastrarUsuarioComponent } from '../../componentes/cadastrar-usuario/cadastrar-usuario.component';
 import { ColaboradoresComponent } from "../../componentes/colaboradores/colaboradores.component";
 import { ConsultarUsuarioComponent } from "../../componentes/consultar-usuario/consultar-usuario.component";
@@ -14,4 +14,6 @@ import { AuthService } from '../../services/auth/auth.service';
 })
 export class UsuariosComponent {
   constructor(public auth:AuthService){}
+  @ViewChild('colaboradoresComponent')colaboradoresComponent!: ColaboradoresComponent
+  @ViewChild('consultarUsuarioComponent')consultarUsuarioComponent!: ConsultarUsuarioComponent
 }

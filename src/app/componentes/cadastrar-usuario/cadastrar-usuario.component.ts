@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, inject, Output } from '@angular/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -7,9 +7,9 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
 import { FormBuilder, FormGroupDirective, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { User } from '../../model/User';
+import { User } from '../../model/user';
 import { UsuarioService } from '../../services/usuario/usuario.service';
-import { Employee } from '../../model/Employee';
+import { Employee } from '../../model/employee';
 import { EmployeeService } from '../../services/employee/employee.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalUsuarioCadastradoComponent } from '../modal-usuario-cadastrado/modal-usuario-cadastrado.component';
@@ -70,8 +70,8 @@ export class CadastrarUsuarioComponent {
     email: ['', [Validators.required, Validators.email]],
     role: ['', Validators.required],
     password: '',
-    selectManager: ['', Validators.required],
-    selectRt: ['', Validators.required],
+    selectManager: '',
+    selectRt: '',
   })
 
   employee: Employee = new Employee();
@@ -79,6 +79,7 @@ export class CadastrarUsuarioComponent {
 
   cadastrar(formulario: FormGroupDirective): void {
     if(this.user.invalid){
+      console.log("invalido")
       return;
     }
     this.usuarioService.verificarEmailExistente(this.user.value.email as string).subscribe(
@@ -113,8 +114,8 @@ export class CadastrarUsuarioComponent {
 
             this.employee.user = this.user.value as User;
             this.employee.status = "Disponivel";
-            this.employee.manager.name = this.user.value.selectManager as string
-            this.employee.rt.name = this.user.value.selectRt as string
+            this.employee.manager.email = this.user.value.selectManager as string
+            this.employee.rt.email = this.user.value.selectRt as string
 
               this.employeeService.cadastrarEmployee(this.employee).subscribe({
                 next: (employeeCriado) => {
@@ -140,6 +141,7 @@ export class CadastrarUsuarioComponent {
   }
 
   readonly dialog = inject(MatDialog);
+  @Output() realizouCadastro = new EventEmitter<void>(); 
 
   abrirModal(usuarioCriado: User){
     this.dialog.open(ModalUsuarioCadastradoComponent,{
@@ -147,8 +149,7 @@ export class CadastrarUsuarioComponent {
       data: {usuarioCriado}
     });
 
-    this.dialog.afterAllClosed.subscribe()
-  
+    this.dialog.afterAllClosed.subscribe(() => this.realizouCadastro.emit())
   }
 }
 

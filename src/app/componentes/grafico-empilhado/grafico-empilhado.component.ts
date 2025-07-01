@@ -2,6 +2,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import Chart from 'chart.js/auto';
 import { UsuarioService} from '../../services/usuario/usuario.service';
 import { OrdemFornecimentoService } from '../../services/ordem-fornecimento/ordem-fornecimento.service';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-grafico-empilhado',
@@ -29,8 +30,10 @@ export class GraficoEmpilhadoComponent implements OnInit {
     );
   }
 
+  auth = inject(AuthService)
+
   carregarOrdemFornecimento():void{
-    this.ofService.vericarLista()
+    this.ofService.vericarLista(this.auth.getId()as number)
     .subscribe(retorno => {
       this.ofService.ordemFornecimentos = retorno,
       console.log(this.ofService.ordemFornecimentos)});

@@ -4,9 +4,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { User } from '../../model/User';
 import { AuthService } from '../../services/auth/auth.service';
-import { Employee } from '../../model/Employee';
+import { Employee } from '../../model/employee';
 import { EmployeeService } from '../../services/employee/employee.service';
 
 @Component({

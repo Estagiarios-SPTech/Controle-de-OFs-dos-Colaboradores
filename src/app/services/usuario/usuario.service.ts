@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { User } from '../../model/User';
+import { User } from '../../model/user';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,7 @@ import { User } from '../../model/User';
 export class UsuarioService {
   private urlSpringBoot = "http://localhost:8080/users"
   private urlQuarkus = "http://localhost:8081/user"
-  colaboradores:User[] = []
+  emails:string[] = []
   
   constructor(private http:HttpClient) {}
        
@@ -26,13 +26,13 @@ export class UsuarioService {
     });
   }
 
-  verificarUsuario():Observable<User[]>{
-    return this.http.get<User[]>(this.urlSpringBoot + "/listarNomes");
+  verificarUsuario():Observable<string[]>{
+    return this.http.get<string[]>(this.urlSpringBoot + "/listarEmails");
   }
 
   listarNomes(): void {
     this.verificarUsuario()
-      .subscribe(retorno => this.colaboradores = retorno);
+      .subscribe(retorno => this.emails = retorno);
   }
   
   usuarios:User[] = [];

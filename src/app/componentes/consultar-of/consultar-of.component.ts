@@ -9,6 +9,7 @@ import { OrdemFornecimento } from '../../model/ordemFornecimento';
 import { CommonModule } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalOfComponent } from '../modal-of/modal-of.component';
+import { AuthService } from '../../services/auth/auth.service';
 
 
 @Component({
@@ -25,7 +26,7 @@ export class ConsultarOFComponent{
   @ViewChild(MatPaginator) paginator: MatPaginator = new MatPaginator();
   @ViewChild(MatSort) sort: MatSort = new MatSort();
 
-  constructor() {
+  constructor(private auth:AuthService) {
     this.listar();
   }
 
@@ -39,7 +40,7 @@ export class ConsultarOFComponent{
   }
 
   listar():void{
-    this.ofService.vericarLista().subscribe(retorno => {
+    this.ofService.vericarLista(this.auth.getId() as number).subscribe(retorno => {
       this.ofService.ordemFornecimentos = retorno
       this.dataSource = new MatTableDataSource(this.ofService.ordemFornecimentos);
       this.dataSource.paginator = this.paginator;

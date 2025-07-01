@@ -5,8 +5,8 @@
   <h3>Colaborador</h3>
   <mat-form-field class="example-full-width">
     <mat-select [(ngModel)]="ofService.ordemFornecimento.employee.user.name" name="status" required>
-        @for (colaborador of usuarioService.colaboradores; track colaborador) {
-            <mat-option [value]="colaborador">{{colaborador}}</mat-option>
+        @for (email of usuarioService.emails; track email) {
+            <mat-option [value]="email">{{email}}</mat-option>
         }
     </mat-select>
   </mat-form-field>
