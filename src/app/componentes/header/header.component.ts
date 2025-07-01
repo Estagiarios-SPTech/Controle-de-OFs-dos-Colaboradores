@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Output, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
-import { UsuarioService } from '../../services/usuario/usuario.service';
 import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
@@ -15,11 +14,10 @@ export class HeaderComponent {
 
   user: string = '';
 
-  constructor(private authService: AuthService) { }
+  constructor(public authService: AuthService) { }
 
   ngOnInit() {
     this.user = this.authService.getNome() || 'Erro';
-    
   }
 
 }

@@ -65,7 +65,7 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem('token');
-    this.currentUserSubject.next(null);
+    window.location.href = ''
   }
 
   getToken(): string | null {

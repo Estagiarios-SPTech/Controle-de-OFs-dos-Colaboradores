@@ -10,7 +10,7 @@
           <a routerLink="ordemFornecimento" mat-list-item>Ordens de Fornecimento</a>
           <a routerLink="usuario" mat-list-item>Gerenciar usuários</a>
           <a routerLink="meuUsuario" mat-list-item>Meus dados</a>
-          <a routerLink=""><img src="sair.png" alt=""></a>
+          <a (click)="authService.logout()"><img src="sair.png" alt=""></a>
       </mat-nav-list>
     </mat-sidenav>
 

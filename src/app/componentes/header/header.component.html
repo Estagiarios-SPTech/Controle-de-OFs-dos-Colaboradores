@@ -19,7 +19,7 @@
                 alt="icone usuario">
             <span class="welcome">Bem vindo,<br> {{ user }} </span>
         </a>
-        <a routerLink="">
+        <a (click)="authService.logout()">
             <img class="img_header tittle_itens" src="https://icon-library.com/images/exit-icon-png/exit-icon-png-5.jpg"
                 alt="icone de sair">
         </a>

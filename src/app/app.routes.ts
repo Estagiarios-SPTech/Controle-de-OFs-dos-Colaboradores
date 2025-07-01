@@ -17,5 +17,6 @@ export const routes: Routes = [
             {path: 'meuUsuario', component: MeuUsuarioComponent},
         ]
     },
+    //Qualquer outro caminho vai para o login
     {path: '**', component: LoginComponent},
 ];

@@ -52,4 +52,6 @@ img{
     height: 40px;
 } 
 
-
+a{
+    cursor: pointer;
+}
