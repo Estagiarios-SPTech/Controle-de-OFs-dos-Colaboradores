@@ -6,7 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { AuthService } from '../../services/auth/auth.service';
 
@@ -28,7 +28,6 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
-    RouterLink,
     MatSnackBarModule
   ],
   templateUrl: './login.component.html',
@@ -74,8 +73,6 @@ emailFormControl = new FormControl('', [
 
 passwordFormControl = new FormControl('', [
   Validators.required,
-  Validators.minLength(8),
-  Validators.pattern('^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$'),
 ]);
 
 validateForm() {
