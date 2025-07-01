@@ -1,6 +1,6 @@
 <div>
     <h1>Usuários</h1>
-    <app-cadastrar-usuario (realizouCadastro)="colaboradoresComponent.carregarColaboradores(); consultarUsuarioComponent.ngOnInit(); consultarUsuarioComponent.ngAfterViewInit()">
+    <app-cadastrar-usuario (realizouCadastro)="carregarTabela()">
     </app-cadastrar-usuario>
     <app-colaboradores #colaboradoresComponent *ngIf="auth.getRole() == 'RT'"></app-colaboradores>
     <app-consultar-usuario #consultarUsuarioComponent *ngIf="auth.getRole() == 'Admin'"></app-consultar-usuario>

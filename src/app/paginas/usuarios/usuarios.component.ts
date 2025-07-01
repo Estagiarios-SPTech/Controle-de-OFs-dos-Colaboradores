@@ -16,4 +16,17 @@ export class UsuariosComponent {
   constructor(public auth:AuthService){}
   @ViewChild('colaboradoresComponent')colaboradoresComponent!: ColaboradoresComponent
   @ViewChild('consultarUsuarioComponent')consultarUsuarioComponent!: ConsultarUsuarioComponent
+
+  carregarTabela() {
+    const role = this.auth.getRole();
+    
+    if (role === 'RT') {
+      this.colaboradoresComponent.carregarColaboradores();
+    }
+    
+    if (role === 'Admin') {
+      this.consultarUsuarioComponent.ngOnInit();
+      this.consultarUsuarioComponent.ngAfterViewInit();
+    }
+  }
 }
