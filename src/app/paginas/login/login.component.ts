@@ -7,6 +7,7 @@ import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/fo
 import { ErrorStateMatcher } from '@angular/material/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { AuthService } from '../../services/auth/auth.service';
 
 /** Error when invalid control is dirty, touched, or submitted. */
@@ -27,6 +28,8 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
+    RouterLink,
+    MatSnackBarModule
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
@@ -38,61 +41,76 @@ export class LoginComponent {
   width: number;
   errorMessage: string = '';
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(private authService: AuthService, private router: Router, private snackBar: MatSnackBar) {
     this.width = window.innerWidth
     this.alterarColuna()
 
   }
 
-  @HostListener('window:resize')
-  alterarColuna() {
-    this.width = window.innerWidth
-    if (this.width < 900) {
-      this.coluna = 1
-      this.rowspan = 4
-    }
-    else {
-      this.coluna = 2
-      this.rowspan = 1
-    }
+  mostrarNaoAutorizado(): void {
+    this.snackBar.open('Acesso negado para colaboradores', 'OK', {
+      horizontalPosition: 'center',
+      verticalPosition: 'bottom'
+    });
   }
 
-  emailFormControl = new FormControl('', [
-    Validators.required,
-    Validators.email,
-  ]);
+@HostListener('window:resize')
+alterarColuna() {
+  this.width = window.innerWidth
+  if (this.width < 900) {
+    this.coluna = 1
+    this.rowspan = 4
+  }
+  else {
+    this.coluna = 2
+    this.rowspan = 1
+  }
+}
 
-  passwordFormControl = new FormControl('', [
-    Validators.required,
-  ]);
+emailFormControl = new FormControl('', [
+  Validators.required,
+  Validators.email,
+]);
 
-  validateForm() {
-    this.emailFormControl.markAsTouched();
-    this.passwordFormControl.markAsTouched();
+passwordFormControl = new FormControl('', [
+  Validators.required,
+  Validators.minLength(8),
+  Validators.pattern('^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$'),
+]);
+
+validateForm() {
+  this.emailFormControl.markAsTouched();
+  this.passwordFormControl.markAsTouched();
+}
+
+matcher = new MyErrorStateMatcher();
+
+login() {
+  if (this.emailFormControl.invalid || this.passwordFormControl.invalid) {
+    this.validateForm();
+    return;
   }
 
-  matcher = new MyErrorStateMatcher();
+  const credentials = {
+    email: this.emailFormControl.value ?? '',
+    password: this.passwordFormControl.value ?? '',
+  };
 
-  login() { 
-    if (this.emailFormControl.invalid || this.passwordFormControl.invalid) {
-      this.validateForm();
-      return; 
-    }
-
-    const credentials = {
-      email: this.emailFormControl.value ?? '',
-      password: this.passwordFormControl.value ?? '',
-    };
-
-    this.authService.login(credentials).subscribe(
-      response => {
-        console.log('Login bem-sucedido', response);
-        this.router.navigate(['/paginaPrincipal/home']); 
-      },
-      error => {
-        console.error('Erro ao fazer login', error);
-        this.errorMessage = 'Email ou senha incorretos'; 
+  this.authService.login(credentials).subscribe(
+    response => {
+      const token = localStorage.getItem('token');
+      if (this.authService.getRole() == 'Colaborador') {
+        // alert('sem permissão pra login');
+        this.mostrarNaoAutorizado();
+        return;
       }
-    );
-  }
+      console.log('Login bem-sucedido', response);
+      this.router.navigate(['/paginaPrincipal/home']);
+    },
+    error => {
+      console.error('Erro ao fazer login', error);
+      this.errorMessage = 'Email ou senha incorretos';
+    }
+  );
+}
 }
