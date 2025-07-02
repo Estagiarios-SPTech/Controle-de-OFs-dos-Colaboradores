@@ -4,7 +4,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { User } from '../../model/User';
+import { User } from '../../model/user';
 
 @Component({
   selector: 'app-colaboradores',

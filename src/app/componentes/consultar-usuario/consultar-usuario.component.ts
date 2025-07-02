@@ -5,7 +5,7 @@ import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { UsuarioService} from '../../services/usuario/usuario.service';
-import { User } from '../../model/User';
+import { User } from '../../model/user';
 
 @Component({
   selector: 'app-consultar-usuario',

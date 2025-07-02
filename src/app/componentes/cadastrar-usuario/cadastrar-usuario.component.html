@@ -23,8 +23,8 @@
                 <mat-label>Cargo</mat-label>
                 <mat-select formControlName="role" name="cargo">
                     <mat-option value="Colaborador">Colaborador</mat-option>
-                    <mat-option value="RT">Responsável Técnico</mat-option>
-                    <mat-option value="Gerente">Gerente</mat-option>
+                    <mat-option *ngIf="userRole === 'Admin'" value="RT">Responsável Técnico</mat-option>
+                    <mat-option *ngIf="userRole === 'Admin'" value="Gerente">Gerente</mat-option>
                 </mat-select>
                 @if (user.get('role')?.hasError('required')) {
                     <mat-error>Este campo precisa estar <strong>preenchido</strong></mat-error>

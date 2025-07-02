@@ -7,13 +7,14 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
 import { FormBuilder, FormGroupDirective, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { User } from '../../model/User';
+import { User } from '../../model/user';
 import { UsuarioService } from '../../services/usuario/usuario.service';
-import { Employee } from '../../model/Employee';
+import { Employee } from '../../model/employee';
 import { EmployeeService } from '../../services/employee/employee.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalUsuarioCadastradoComponent } from '../modal-usuario-cadastrado/modal-usuario-cadastrado.component';
 import { SnackbarService } from '../../services/snackbar/snackbar.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-cadastrar-usuario',
@@ -33,11 +34,14 @@ export class CadastrarUsuarioComponent {
   selectedManagerObj: User | null = null;
   selectedRtObj: User | null = null;
 
-  constructor(public usuarioService: UsuarioService, public employeeService: EmployeeService) { }
+   userRole: string = '';
+
+  constructor(public usuarioService: UsuarioService, public employeeService: EmployeeService, public authService: AuthService) { }
 
   ngOnInit(): void {
     this.loadManagers();
     this.loadRts();
+    this.userRole = this.authService.getRole() ?? '';
   }
 
   loadManagers(): void {
