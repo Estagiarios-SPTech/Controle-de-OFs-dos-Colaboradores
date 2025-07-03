@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { JwtHelperService } from '@auth0/angular-jwt';
 import { User } from '../../model/user';
 
 @Injectable({
@@ -12,7 +11,6 @@ import { User } from '../../model/user';
 export class UsuarioService {
   private urlSpringBoot = "http://localhost:8080/users"
   private urlQuarkus = "http://localhost:8081/user"
-  emails:string[] = []
   
   constructor(private http:HttpClient) {}
        
@@ -26,13 +24,8 @@ export class UsuarioService {
     });
   }
 
-  verificarUsuario():Observable<string[]>{
-    return this.http.get<string[]>(this.urlSpringBoot + "/listarEmails");
-  }
-
-  listarNomes(): void {
-    this.verificarUsuario()
-      .subscribe(retorno => this.emails = retorno);
+  listarColaboradores():Observable<User[]>{
+    return this.http.get<User[]>(this.urlSpringBoot + "/Colaboradores");
   }
   
   usuarios:User[] = [];

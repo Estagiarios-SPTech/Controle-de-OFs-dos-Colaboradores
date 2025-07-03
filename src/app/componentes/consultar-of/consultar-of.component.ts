@@ -41,6 +41,7 @@ export class ConsultarOFComponent{
 
   listar():void{
     this.ofService.vericarLista(this.auth.getId() as number).subscribe(retorno => {
+      console.log(this.ofService.ordemFornecimentos)
       this.ofService.ordemFornecimentos = retorno
       this.dataSource = new MatTableDataSource(this.ofService.ordemFornecimentos);
       this.dataSource.paginator = this.paginator;
@@ -53,7 +54,7 @@ export class ConsultarOFComponent{
     this.ofService.verificarListaId(codigo)
     .subscribe(retorno => {
       this.ofService.ordemFornecimento = retorno
-      this.openDialog()
+
     })
   }
 
@@ -63,8 +64,9 @@ export class ConsultarOFComponent{
 
   readonly dialog = inject(MatDialog);
   
-  openDialog() {
+  openDialog(ordemFornecimento:OrdemFornecimento) {
     this.dialog.open(ModalOfComponent,{
+      data: {ordemFornecimento},
       width: '600px'
     });
 

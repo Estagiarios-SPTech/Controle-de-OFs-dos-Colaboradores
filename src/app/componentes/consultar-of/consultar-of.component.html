@@ -16,7 +16,7 @@
       <!-- Coluna Colaborador -->
       <ng-container matColumnDef="employee">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Colaborador </th>
-        <td mat-cell *matCellDef="let row"> {{row.employee}} </td>
+        <td mat-cell *matCellDef="let row"> {{row.employee.user.name}} </td>
       </ng-container>
   
       <!-- Coluna Descrição -->
@@ -47,7 +47,7 @@
       <ng-container matColumnDef="acao">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Ação </th>
         <td mat-cell *matCellDef="let row">
-          <a (click)="listarPorId(row.codigo)">
+          <a (click)="openDialog(row)">
             <img src="botaoEditar.png" alt="">
           </a>
           <a (click)="this.excluir(row.codigo)">

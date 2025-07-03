@@ -2,9 +2,9 @@
     <div id="formParte1">
         <mat-form-field appearance="outline">
             <mat-label>Colaborador</mat-label>
-            <mat-select #input="ngModel" [(ngModel)]="ordemFornecimento.employee.user.email" required name="colaborador" required>
-              @for (email of usuarioService.emails; track email) {
-                <mat-option [value]="email">{{email}}</mat-option>
+            <mat-select #input="ngModel" [(ngModel)]="ordemFornecimento.employee.user.id" required name="colaborador" required>
+              @for (colaborador of colaboradores; track colaborador) {
+                <mat-option [value]="colaborador.id">{{colaborador.name}}</mat-option>
               }
             </mat-select>
             @if (input.hasError('required')) {

@@ -37,7 +37,7 @@
                 <mat-label>Gerente</mat-label>
                 <mat-select required formControlName="selectManager" name="manager">               
                        @for (manager of managers; track manager) {
-                        <mat-option [value]="manager.email"> {{ manager.email }} </mat-option>
+                        <mat-option [value]="manager.name"> {{ manager.name }} </mat-option>
                        }    
                 </mat-select>
                 <mat-error *ngIf="!user.value.selectManager">Este campo precisa estar <strong>preenchido</strong></mat-error>            
@@ -47,7 +47,7 @@
                 <mat-label>Responsável Técnico</mat-label>
                 <mat-select required formControlName="selectRt" name="rt">
                     @for (rt of rts; track rt) {
-                        <mat-option [value]="rt.email"> {{ rt.email }} </mat-option>
+                        <mat-option [value]="rt.name"> {{ rt.name }} </mat-option>
                     }
                 </mat-select>
                 <mat-error *ngIf="!user.value.selectRt">Este campo precisa estar <strong>preenchido</strong></mat-error>   

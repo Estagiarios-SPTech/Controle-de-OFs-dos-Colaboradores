@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { OrdemFornecimentoService } from '../../services/ordem-fornecimento/ordem-fornecimento.service';
 import { OrdemFornecimento } from '../../model/ordemFornecimento';
 import { UsuarioService } from '../../services/usuario/usuario.service';
+import { User } from '../../model/user';
 
 
 @Component({
@@ -18,14 +19,16 @@ import { UsuarioService } from '../../services/usuario/usuario.service';
 })
 export class CadastrarOFComponent {
   status = ["Pendente de Cadastramento", "Iniciada", "Validada"]
+  colaboradores: User[] = [] 
 
   ofService = inject(OrdemFornecimentoService)
-  usuarioService = inject(UsuarioService)
+  private usuarioService = inject(UsuarioService)
   @Output() realizouCadastro = new EventEmitter<void>(); 
   ordemFornecimento = new OrdemFornecimento()
 
   ngOnInit(){
-    this.usuarioService.listarNomes()
+    this.usuarioService.listarColaboradores().subscribe(
+      retorno => this.colaboradores = retorno)
   }
 
   cadastrar(){
