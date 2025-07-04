@@ -28,7 +28,7 @@ export class HomeComponent {
     this.role = this.authService.getRole() ?? '';
   }
 
-  mostrarNaoAutorizado(): void {
+  gerenteNaoAutorizado(): void {
     this.snackBar.open('Acesso negado para gerentes', 'OK', {
       horizontalPosition: 'center',
       verticalPosition: 'bottom'
@@ -40,8 +40,16 @@ export class HomeComponent {
     if (this.role === 'Admin' || this.role === 'RT') {
       this.router.navigate(['/paginaPrincipal/usuario']);
     } else {
-      this.mostrarNaoAutorizado();
+      this.gerenteNaoAutorizado();
     }
   }
+  cadastrarOF() {
+    // if (this.role === 'Admin' || this.role === 'RT') {
+    //   this.router.navigate(['/paginaPrincipal/ordemFornecimento']);
+    // } else {
+    //   this.gerenteNaoAutorizado();
+    // }
 
+    this.router.navigate(['/paginaPrincipal/ordemFornecimento']);
+  }
 }

@@ -1,6 +1,6 @@
 <div id="pagina">
     <div class="secao">
-        <app-card routerLink="../ordemFornecimento" [img]="'iconeOF.png'" [titulo]="'Ordens de Serviço'"></app-card>
+        <app-card (click)="cadastrarOF()" [img]="'iconeOF.png'" [titulo]="'Ordens de Serviço'"></app-card>
         <app-card (click)="cadastrarUser()"  [img]="'iconeUsuarioCard.png'" [titulo]="'Usuário'"></app-card>
         <app-card [img]="'iconeRelatorio.png'" [titulo]="'Relatórios'"></app-card>
     </div>
