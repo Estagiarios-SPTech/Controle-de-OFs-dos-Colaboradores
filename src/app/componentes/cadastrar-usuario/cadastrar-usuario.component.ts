@@ -14,6 +14,7 @@ import { EmployeeService } from '../../services/employee/employee.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalUsuarioCadastradoComponent } from '../modal-usuario-cadastrado/modal-usuario-cadastrado.component';
 import { SnackbarService } from '../../services/snackbar/snackbar.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-cadastrar-usuario',
@@ -33,11 +34,14 @@ export class CadastrarUsuarioComponent {
   selectedManagerObj: User | null = null;
   selectedRtObj: User | null = null;
 
-  constructor(public usuarioService: UsuarioService, public employeeService: EmployeeService) { }
+   userRole: string = '';
+
+  constructor(public usuarioService: UsuarioService, public employeeService: EmployeeService, public authService: AuthService) { }
 
   ngOnInit(): void {
     this.loadManagers();
     this.loadRts();
+    this.userRole = this.authService.getRole() ?? '';
   }
 
   loadManagers(): void {

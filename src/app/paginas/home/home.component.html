@@ -1,7 +1,12 @@
 <div id="pagina">
     <div class="secao">
-        <app-card routerLink="../ordemFornecimento" [img]="'iconeOF.png'" [titulo]="'Ordens de Serviço'"></app-card>
-        <app-card routerLink="../usuario"  [img]="'iconeUsuarioCard.png'" [titulo]="'Usuário'"></app-card>
+        <app-card (click)="cadastrarOF()" [img]="'iconeOF.png'" [titulo]="'Ordens de Serviço'"></app-card>
+        <app-card (click)="cadastrarUser()"  [img]="'iconeUsuarioCard.png'" [titulo]="'Usuário'"></app-card>
+        <app-card [img]="'iconeRelatorio.png'" [titulo]="'Relatórios'"></app-card>
+    </div>
+    <div class="secao">
+        <app-consultar-usuario></app-consultar-usuario>
+        <app-grafico-empilhado></app-grafico-empilhado>
     </div>
     <app-grafico-empilhado></app-grafico-empilhado>
     <app-card-azul></app-card-azul>

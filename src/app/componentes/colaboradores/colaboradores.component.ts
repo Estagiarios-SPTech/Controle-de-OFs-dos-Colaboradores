@@ -7,6 +7,7 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { AuthService } from '../../services/auth/auth.service';
 import { Employee } from '../../model/employee';
 import { EmployeeService } from '../../services/employee/employee.service';
+import { User } from '../../model/user';
 
 @Component({
   selector: 'app-colaboradores',
