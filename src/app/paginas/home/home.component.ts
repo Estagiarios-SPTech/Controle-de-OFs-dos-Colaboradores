@@ -5,9 +5,10 @@ import { Router, RouterLink } from '@angular/router';
 import { GraficoPieOfComponent } from '../../componentes/grafico-pie-of/grafico-pie-of.component';
 import { CardAzulComponent } from "../../componentes/card-azul/card-azul.component";
 import { GraficoBarraOfComponent } from "../../grafico-barra-of/grafico-barra-of.component";
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../services/auth/auth.service';
 import { tick } from '@angular/core/testing';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { ConsultarUsuarioComponent } from '../../componentes/consultar-usuario/consultar-usuario.component';
 
 @Component({
   selector: 'app-home',
