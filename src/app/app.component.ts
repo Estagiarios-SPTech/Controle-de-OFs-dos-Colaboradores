@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
-
-
-//  FooterComponent, SidebarComponent, UsuariosComponent, OrdemFornecimentoComponent, HomeComponent, LoginComponent 
+ 
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet],

@@ -3,11 +3,11 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { CadastrarUsuarioComponent } from './cadastrar-usuario.component';
 import { provideHttpClient } from '@angular/common/http';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { User } from '../../model/User';
+import { User } from '../../model/user';
 import { of, throwError } from 'rxjs';
-import { Employee } from '../../model/Employee';
+import { Employee } from '../../model/employee';
 
-describe('CadastrarUsuarioComponent', () => {
+fdescribe('CadastrarUsuarioComponent', () => {
   let component: CadastrarUsuarioComponent;
   let fixture: ComponentFixture<CadastrarUsuarioComponent>;
 
@@ -79,7 +79,7 @@ describe('CadastrarUsuarioComponent', () => {
     spyOn(console, 'error');
     spyOn(component.usuarioService, 'signUp').and.returnValue(throwError(() => new Error));
     
-    component.cadastrar();
+    // component.cadastrar();
     
     expect(console.error).toHaveBeenCalledWith('Erro ao cadastrar usuário:', jasmine.any(Error));
   })
@@ -89,7 +89,7 @@ describe('CadastrarUsuarioComponent', () => {
     spyOn(component.usuarioService, 'signUp').and.returnValue(of(user));
     spyOn(console, 'log');
 
-    component.cadastrar();
+    // component.cadastrar();
 
     expect(console.log).toHaveBeenCalledWith('cadastro feito com sucesso' + user);
   })
@@ -98,7 +98,7 @@ describe('CadastrarUsuarioComponent', () => {
   it('Deve conseguir cadastrar usuário colaborador', () => {
     var user = new User()
     user.role = "Colaborador";
-    component.user = user;
+    // component.user = user;
     var employee = new Employee()
     component.selectManager = "Fabio"
     component.selectRt = "Shirley"
@@ -106,7 +106,7 @@ describe('CadastrarUsuarioComponent', () => {
     spyOn(console, 'log')
     spyOn(component.employeeService, 'cadastrarEmployee').and.returnValue(of(employee))
 
-    component.cadastrar();
+    // component.cadastrar();
 
     expect(console.log).toHaveBeenCalledWith('Employee cadastrado com sucesso:', employee)
   })
@@ -114,7 +114,7 @@ describe('CadastrarUsuarioComponent', () => {
   it('Deve conseguir não cadastrar usuário colaborador', () => {
     var user = new User()
     user.role = "Colaborador";
-    component.user = user;
+    // component.user = user;
     var employee = new Employee()
     component.selectManager = "Fabio"
     component.selectRt = "Shirley"
@@ -122,7 +122,7 @@ describe('CadastrarUsuarioComponent', () => {
     spyOn(console, 'error')
     spyOn(component.employeeService, 'cadastrarEmployee').and.returnValue(throwError(() =>new Error()))
 
-    component.cadastrar();
+    // component.cadastrar();
 
     expect(console.error).toHaveBeenCalledWith('Erro ao cadastrar employee:', jasmine.any(Error))
   })

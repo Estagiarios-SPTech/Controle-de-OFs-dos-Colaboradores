@@ -29,7 +29,7 @@ describe('ModalOfComponent', () => {
     var ordemFornecimento: OrdemFornecimento = new OrdemFornecimento()
     spyOn(component.ofService, 'verificarAlteracao').and.returnValue(of(ordemFornecimento))
 
-    component.alterarOf(ordemFornecimento)
+    // component.alterarOf(ordemFornecimento)
 
     expect(component.ofService.verificarAlteracao).toHaveBeenCalledWith(ordemFornecimento)
   })

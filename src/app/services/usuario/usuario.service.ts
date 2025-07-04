@@ -7,7 +7,6 @@ import { User } from '../../model/user';
   providedIn: 'root'
 })
 
-
 export class UsuarioService {
   private urlSpringBoot = "http://localhost:8080/users"
   private urlQuarkus = "http://localhost:8081/user"

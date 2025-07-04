@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { GraficoEmpilhadoComponent } from './grafico-empilhado.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideHttpClient } from '@angular/common/http';
-import { User } from '../../model/User';
+import { User } from '../../model/user';
 import { of, throwError } from 'rxjs';
 import { OrdemFornecimento } from '../../model/ordemFornecimento';
 

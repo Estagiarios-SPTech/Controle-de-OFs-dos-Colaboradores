@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { EmployeeService } from '../employee.service';
-import { Employee } from '../../model/Employee';
+import { EmployeeService } from './employee.service';
+import { Employee } from '../../model/employee';
 import { Observable, Observer } from 'rxjs';
 
 describe('EmployeeService', () => {
@@ -12,38 +12,42 @@ describe('EmployeeService', () => {
     id: 101,
     name: 'Fabio',
     email: 'fabio@stefanini.com',
-    role: 'Colaborador'
+    role: 'Colaborador',
+    password: '123'
   };
 
   const mockRT = {
     id: 102,
     name: 'Ezequiel',
     email: 'ezequiel@stefanini.com',
-    role: 'RT'
+    role: 'RT',
+    password: '123'
   };
 
   const mockManager = {
     id: 103,
     name: 'Rafael',
     email: 'rafael@stefanini.com',
-    role: 'Manager'
+    role: 'Manager',
+    password: '123'
   };
 
   const mockEmployees: Employee[] = [
     {
       id: 1,
-      employee: mockUser,
+      user: mockUser,
       rt: mockRT,
       manager: mockManager,
       status: 'Disponivel'
     },
     {
       id: 2,
-      employee: {
+      user: {
         id: 104,
         name: 'Shirley',
         email: 'shirley@stefanini.com',
-        role: 'Colaborador'
+        role: 'Colaborador',
+        password: '123'
       },
       rt: mockRT,
       manager: mockManager,
@@ -112,11 +116,12 @@ describe('EmployeeService', () => {
     it('deve cadastrar um novo funcionário via POST', () => {
       const newEmployee: Employee = {
         id: 3,
-        employee: {
+        user: {
           id: 105,
           name: 'João',
           email: 'joão@stefanini.com',
-          role: 'Colaborador'
+          role: 'Colaborador',
+          password: '123'
         },
         rt: mockRT,
         manager: mockManager,
@@ -136,11 +141,12 @@ describe('EmployeeService', () => {
     it('deve lidar com erro ao cadastrar funcionário', () => {
       const newEmployee: Employee = {
         id: 3,
-        employee: {
+        user: {
           id: 105,
           name: 'Joao',
           email: 'joao@stefanini.com',
-          role: 'Colaborador'
+          role: 'Colaborador',
+          password: '123'
         },
         rt: mockRT,
         manager: mockManager,
@@ -172,10 +178,10 @@ describe('EmployeeService', () => {
 
       const newEmployee: Employee = { 
         id: 1, 
-        employee: mockUser, 
+        user: mockUser, 
         rt: mockRT, 
         manager: mockManager, 
-        status: 'Disponivel' 
+        status: 'Disponivel'
       };
       service.cadastrarEmployee(newEmployee).subscribe();
       req = httpMock.expectOne('http://localhost:8080/employees/new');

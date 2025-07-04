@@ -4,8 +4,10 @@ import { CadastrarOFComponent } from './cadastrar-of.component';
 import { provideHttpClient } from '@angular/common/http';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { OrdemFornecimento } from '../../model/ordemFornecimento';
-import { Employee } from '../../model/Employee';
+import { Employee } from '../../model/employee';
 import { of } from 'rxjs';
+import { UsuarioService } from '../../services/usuario/usuario.service';
+import { User } from '../../model/user';
 
 describe('CadastrarOFComponent', () => {
   let component: CadastrarOFComponent;
@@ -26,11 +28,21 @@ describe('CadastrarOFComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('Deve carregar os colaboradores', () => {
+    var mockColaboradores: User[] = []
+    var usuarioService = TestBed.inject(UsuarioService)
+    spyOn(usuarioService, 'listarColaboradores').and.returnValue(of(mockColaboradores))
+
+    usuarioService.listarColaboradores()
+
+    expect(usuarioService.listarColaboradores).toBe(of(mockColaboradores))
+  })
+
   it('Deve cadastrar', () => {
     var mockEmployee: Employee = new Employee()
     var mockOF: OrdemFornecimento = {
       codigo: 1,
-      collaborator: mockEmployee,
+      employee: mockEmployee,
       description: "",
       status: "",
       created_at: "",

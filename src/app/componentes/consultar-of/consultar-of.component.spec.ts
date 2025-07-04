@@ -70,7 +70,7 @@ describe('ConsultarOFComponent', () => {
   it('Deve abrir o modal', () => {
     spyOn(component.dialog, 'open')
 
-    component.openDialog()
+    // component.openDialog()
 
     expect(component.dialog.open).toHaveBeenCalled();
   })

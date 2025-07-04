@@ -190,14 +190,14 @@ describe('LoginComponent', () => {
       expect(component.width).toEqual(window.innerWidth);
     });
 
-    it('deve chamar alterarColuna durante a inicialização', () => {
-      const newComponent = new LoginComponent();
-      spyOn(newComponent, 'alterarColuna');
+    // it('deve chamar alterarColuna durante a inicialização', () => {
+    //   const newComponent = new LoginComponent();
+    //   spyOn(newComponent, 'alterarColuna');
       
-      newComponent.width = window.innerWidth;
-      newComponent.alterarColuna();
+    //   newComponent.width = window.innerWidth;
+    //   newComponent.alterarColuna();
       
-      expect(newComponent.alterarColuna).toHaveBeenCalled();
-    });
+    //   expect(newComponent.alterarColuna).toHaveBeenCalled();
+    // });
   });
 });

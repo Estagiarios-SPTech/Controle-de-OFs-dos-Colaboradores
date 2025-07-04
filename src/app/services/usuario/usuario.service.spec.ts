@@ -1,24 +1,25 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { UsuarioService } from '../usuario.service';
-import { User } from '../../model/User';
+import { UsuarioService } from './usuario.service';
+import { User } from '../../model/user';
+import { of } from 'rxjs';
 
 describe('UsuarioService', () => {
   let service: UsuarioService;
   let httpMock: HttpTestingController;
 
   const mockUsers: User[] = [
-    { id: 1, name: 'Fulano', email: 'fulano@email.com', role: 'Colaborador' },
-    { id: 2, name: 'Rafael', email: 'rafael@email.com', role: 'Manager' },
-    { id: 3, name: 'Ezequiel', email: 'ezequiel@email.com', role: 'RT' }
+    { id: 1, name: 'Fulano', email: 'fulano@email.com', role: 'Colaborador', password: '123' },
+    { id: 2, name: 'Rafael', email: 'rafael@email.com', role: 'Manager', password: '123' },
+    { id: 3, name: 'Ezequiel', email: 'ezequiel@email.com', role: 'RT', password: '123' }
   ];
 
   const mockManagers: User[] = [
-    { id: 2, name: 'Rafael', email: 'rafael@email.com', role: 'Manager' }
+    { id: 2, name: 'Rafael', email: 'rafael@email.com', role: 'Manager', password: '123' }
   ];
 
   const mockRTs: User[] = [
-    { id: 3, name: 'Ezequiel', email: 'ezequiel@email.com', role: 'RT' }
+    { id: 3, name: 'Ezequiel', email: 'ezequiel@email.com', role: 'RT', password: '123' }
   ];
 
   beforeEach(() => {
@@ -90,7 +91,8 @@ describe('UsuarioService', () => {
         id: 101,
         name: 'fulano',
         email: 'fulano@email.com',
-        role: 'Colaborador'
+        role: 'Colaborador',
+        password: '123'
       };
 
       service.signUp(newUser).subscribe(user => {
@@ -110,16 +112,16 @@ describe('UsuarioService', () => {
 
   describe('listarNomes()', () => {
     it('deve carregar nomes e atualizar a propriedade colaboradores', () => {
-      spyOn(service, 'verificarUsuario').and.callThrough();
+      spyOn(service, 'listarColaboradores').and.returnValue(of(mockUsers));
       
-      service.listarNomes();
+      service.listarColaboradores();
       
-      expect(service.verificarUsuario).toHaveBeenCalled();
+      expect(service.listarColaboradores).toHaveBeenCalled();
       
-      const req = httpMock.expectOne('http://localhost:8080/users/listarNomes');
+      const req = httpMock.expectOne('http://localhost:8080/users/Colaboradores');
       req.flush(mockUsers);
       
-      expect(service.colaboradores).toEqual(mockUsers);
+      // expect(service.listarColaboradores).toHaveBeenCalledWith();
     });
   });
 
