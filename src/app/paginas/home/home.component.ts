@@ -12,7 +12,7 @@ import { ConsultarUsuarioComponent } from '../../componentes/consultar-usuario/c
 
 @Component({
   selector: 'app-home',
-  imports: [CardComponent, ConsultarUsuarioComponent, GraficoEmpilhadoComponent, RouterLink, GraficoPieOfComponent,
+  imports: [CardComponent, GraficoEmpilhadoComponent, RouterLink, GraficoPieOfComponent,
     CardAzulComponent, GraficoBarraOfComponent, MatSnackBarModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'

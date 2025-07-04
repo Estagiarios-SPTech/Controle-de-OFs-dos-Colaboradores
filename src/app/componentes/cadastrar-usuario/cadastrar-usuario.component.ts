@@ -14,7 +14,7 @@ import { EmployeeService } from '../../services/employee/employee.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalUsuarioCadastradoComponent } from '../modal-usuario-cadastrado/modal-usuario-cadastrado.component';
 import { SnackbarService } from '../../services/snackbar/snackbar.service';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-cadastrar-usuario',
